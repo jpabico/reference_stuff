@@ -26,18 +26,20 @@
 
         <!-- The list -->
         <div class="list-group-item" ng-repeat = "todo in todos">
+            <!-- ng-model binds the view into the model (to a property on $scope-->
             <input type="checkbox" ng-model="todo.done"/>
             <input class="todo" type="text" ng-model="todo.text"/>
 
             <!-- The icons -->
             <div class="after-text">
+                <!-- event handling -->
                 <a href="" ng-click="move($index, 'up')"><span class="glyphicon glyphicon-arrow-up"></span></a>
                 <a href="" ng-click="move($index, 'down')"><span class="glyphicon glyphicon-arrow-down"></span></a>
                 <a href="" ng-click="removeTodo($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
             </div>
         </div>
 
-        <!-- Preview box -->
+        <!-- Preview box; doesn't show when text is absent -->
         <div class="list-group-item" ng-show='todoText'>
             <input type="checkbox" disabled="true">
             <input type="text" disabled="true" class="todo" placeholder="{{todoText}}">
