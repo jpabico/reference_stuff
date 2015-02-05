@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular JS from Code School</title>
+</head>
+<body>
+    <h1> Lesson Summaries from Shaping Up With Angular (Code School)</h1>
+    <p>Lesson 1.1 -Ramp Up</p>
+        <ol>
+            <li>Angular is a client-side JS framework for adding interactivity to HTML</li>
+            <li>"How do we tell our HTML when to trigger our JS?"</li>
+            <li>Works with jQuery & easy to test</li>
+            <li>A directive is a marker on an HTML tag that tells Angluar to run/reference some JS code (it's how we bind the behavior)</li>
+            <li>Download the libraries (http://angularjs.org - use angular.min.js)</li>
+            <li>Bootstrap is also used in the lessons (http://getbootstrap.com - use bootstrap.min.css)</li>
+            <li>Modules are where pieces of Angular application and dependencies are written to make code more maintainable, testable, and readable</li>
+            <li>Expressions allow us to insert dynamic values into  (see https://docs.angularjs.org/guide/expression)</li>
+        </ol>
+    <p> Lesson 1.2 - Creating a Store Module</p>
+        <ol>
+
+            <li>Create a module named 'gemStore'
+                <ul>
+                    <li>(in app.js) var app = angular.module('gemStore', [])</li>
+                </ul>   
+            </li>
+            <li>Attach gemStore module to HTML page with a directive and create simple expression to display a message
+                <ul>
+                    <li>(in index.html) in html tag, ng-app='gemStore'</li>
+                    <li>(in index.html) in p tag, {{"Hello, Angular!"}}</li>
+                </ul>   
+            </li>
+        </ol>
+    <p> Lesson 1.3 Index HTML Setup</p>
+        <ol>
+            <li>Controllers are where app's behavior is defined using functions and values</li>
+            <li>good habit: wrap entire JS code in a closure...in app.js, (function() { JS CODE })();</li>
+            <li>in JS CODE, app.controller('StoreController', function(){this.product = gem});</li>
+            <li>var gem = { some JS object };</li>
+            
+        </ol>
+</body>
+</html>
