@@ -1,0 +1,16 @@
+.todo {
+    border: none;
+    width: 70%;
+}
+
+.container {
+    width: 70%;
+}
+
+.after-text {
+    float: right;
+}
+
+.title {
+    background-color: #f5f5f5;
+}
