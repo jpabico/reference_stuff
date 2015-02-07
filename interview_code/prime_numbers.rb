@@ -18,3 +18,17 @@ def find_primes(upper_limit)
 end
 
 find_primes(50)
+
+#recursive solution
+
+def find_primes_recursively(array = (2..30).to_a, result = [])
+    b = array.reject { |i| i%array[0] == 0 }
+    if array.length > b.length
+        result << array[0]
+        find_primes_recursively(b, result)
+    else
+        result
+    end
+end
+
+find_primes_recursively()
