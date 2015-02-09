@@ -33,4 +33,3 @@ a = (1..8).to_a
 a.shuffle!
 p a.inspect
 p insertion_sort(a).inspect
-
