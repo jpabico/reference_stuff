@@ -68,3 +68,8 @@ h = [1, 3, 5, 7]
 i = [2, 4, 6, 8]
 j = h.zip(i)    #=> [[1, 2], [3, 4], [5, 6], [7, 8]]
 j.to_h    #=> changes into a hash
+
+# swapping two elements in an array
+k =[4, 5, 6, 7]
+k[0], k[3] = k[3], k[0]
+#=> [7, 5, 6, 4]
