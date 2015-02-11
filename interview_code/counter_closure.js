@@ -1,3 +1,5 @@
+// Completed, not refactored
+
 function counter() {
     var count = 0;
     var plus = function() {

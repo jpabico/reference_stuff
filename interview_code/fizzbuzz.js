@@ -1,3 +1,5 @@
+// Completed, not refactored
+
 function fizzbuzz(upperLimit) {
     document.body.innerHTML = "";
     for (var i = 1 ; i <= upperLimit; i++) {

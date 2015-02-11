@@ -1,3 +1,5 @@
+# Completed, not refactored
+
 def fizzbuzz(upper_limit)
     if !upper_limit.is_a? Integer
         puts "Please use an integer for an argument"
