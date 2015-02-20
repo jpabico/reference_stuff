@@ -32,4 +32,47 @@ For an API or web service to be RESTful, it must do the following:
 - not hold state between requests (meaning that all the information necessary to respond to a request is available in each individual request)...no data (or state) is held by the server from request to request
 - use http and http methods (see below)
 
+4 HTTP verbs...GET (read), POST (create), PUT (update), DELETE (destroy)
 
+
+anatomy of a request - made up of 3 parts
+
+request line - tells the server what kind of request is being sent (GET, POST, etc) and what resource it's looking for
+
+header - sends the server additional info (e.g. which client is making the request)
+
+body - empty (GET request) or contains data (POST, PUT)
+
+// POST /codecademy/learn-http HTTP/1.1     ...request line
+// Host: www.codecademy.com                         ...header
+// Content-Type: text/html; charset=UTF-8
+
+// Name=Eric&Age=26                                     ...data
+
+endpoints are API-defined locations where particular data are stored.  You'll GET something different different depending on the endpoint you use.
+
+for example, if you're using the API for a video hosting service, there might be endpoints for the most popular videos, the most recent videos, or videos belonging to a certain category, etc
+
+many APIs require an API key that grants you access to a particular API.  the key identifies you to the API, which helps the API provider keep track of how their service is used and prevent unauthorized/malicious activity
+
+some APIs require authentication using a protocol called OAuth
+
+API keys are long/alphanumeric
+
+a successful request to the server results in a response which is the message the server sends back to the client (you!)
+
+the response from the server will contain a 3-digit status code
+
+anatomy of a response
+
+response line = includes 3-digit HTTP status code
+header = includes information about the server and its response
+body = contains the text of the response
+
+parsing (or analyzing) XML (extensible markup language)
+
+as long as you document the structure of your API's response, other people can use your API to get information
+
+JSON is an alternative to XML.
+
+let's use this information to use the YouTube API
