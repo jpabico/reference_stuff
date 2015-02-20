@@ -1,0 +1,35 @@
+Here are my notes about APIs from when I first started learning about this stuff...
+        HTTP = HyperText Transfer Protocol
+        ...it's a fancy way of saying "rules for getting something from one place to another"
+        ...in this case, the rules are for transferring web pages to your browser
+
+sample js file that requests information from a server...
+
+var xhr = new XMLHttpRequesy();
+xhr.open("GET", "http://www.codeacademy.com/", false);
+xhr.send();
+
+console.log(xhr.status);
+console.log(xhr.statusText);
+
+this request returns 200 / OK
+
+we can use HTTP to grab info from just about any web page on the internet. these pages come from servers.
+
+clients make an HTTP request.  The server sends a response back.
+
+This client/server relationship is a prerequisite of a set of principles called REST 
+
+Representational State Transfer
+
+Whenever you navigate through a site by clicking links, you're making a state transition, which brings you to the next page (representing the next state of the app) - that's it!
+
+by following this simple model of clicking from page to page, you're starting to follow REST principles.  (Restful)
+
+API (application programming interface) = specifies the ways a program can interact with an application.  fro example, if you want to write a program that reads and analyzes dara from twitter, you'd need to use the twitter api, which would specify the process for authentication, imporant URLs, classes, methods and so on.
+For an API or web service to be RESTful, it must do the following:
+- separate the client from the server
+- not hold state between requests (meaning that all the information necessary to respond to a request is available in each individual request)...no data (or state) is held by the server from request to request
+- use http and http methods (see below)
+
+
