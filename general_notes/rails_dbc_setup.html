@@ -1,0 +1,223 @@
+terminal
+rails new app_name -T -d=postgresql
+
+-----
+
+configure db - database.yml
+default: &default
+adapter: postgresql
+encoding: unicode
+pool: 5
+
+development:
+<<: *default
+database:name_of_something_development
+
+test:
+<<: *default
+database:name_of_something_test
+
+production:
+<<: *default
+database:name_of_something_production
+username: # set these when you deploy
+password:
+
+Gemfile set up for testing
+group :development, :test do
+    gem 'rspec-rails', '=2.14'
+    gem 'factory_girl_rails'
+    gem 'faker'
+end
+
+group :test do
+    gem 'capybara'
+    gem 'selenium-webdriver'
+    gem 'database_cleaner'
+    gem 'shoulda-matchers'
+end
+
+-----
+
+terminal
+bundle install
+rails generate rspec:install
+
+-----
+
+spec_helper.rb to configure database cleaner
+ENV["RAILS.ENV"] ||='test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
+
+Dir[Rails.root.join("spec/support/**/*.rb")].each {l |f| require f}
+Rspec.configure do |config|
+    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    config.use.transactional_fixtures = false
+    config.infer_base_class_for_anonymous_controllers = false
+    config.order = "random"
+    config.before (:suite) do
+        DatabaseCleaner.strategy = :truncation
+    end
+
+    config.before (:each) do
+        DatabaseCleaner.start
+    end
+
+    config.after (:each) do
+        DatabaseCleaner.clean
+    end
+end
+
+-----
+
+terminal
+rake db:create
+rails server
+
+-----
+
+2014...._task.rb
+
+class Task < ActiveRecord::Migration
+    def change
+        create_table :tasks do |t|
+            t.string :title
+            t.timestamps
+        end
+    end
+end
+
+-----
+
+config/routes.rb
+
+TODO::Application.routes.draw do
+    root :to => "task#index"
+    resources :tasks
+end
+
+-----
+
+app/models/task.rb
+
+class Task < ActiveRecord::Base
+    #attr_accessible :title
+end
+
+-----
+
+app/helpers/application_helper.rb
+
+module ApplicationHelper
+end
+
+-----
+
+app/controllers/tasks_controller.rb
+
+class TasksController < ApplicationController
+    def index
+        @tasks = Task.all
+    end
+
+    def show
+        @task = Task.find(params[:id])
+    end
+
+    def new
+        @task = Task.new
+    end
+
+    def create
+        @task = Task.new(title: params[:task][:title])
+        if @task.save
+            redirect_to tasks_path
+        else
+            render :new
+        end
+    end
+
+    def edit
+        @task = Task.find(params[:id])
+    end
+
+    def update
+        @task = Task.find(params[:id])
+        if @task.update_atributes(title: params[:task][:title])
+            redirect_to tasks_path
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        Task.delete(params[:id])
+        redirect_to tasks_path
+    end
+end
+
+-----
+
+app/views/layouts/application.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Tasks to Do </title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <header class="one">
+        <h2 class-"two">Task List </h2>
+        <h3 class="three">
+            <%= link_to "New Task", new_task_path %>
+        </h3>
+    </header>
+    <%= yield %>
+</body>
+</html>
+
+-----
+
+app/views/tasks/_form.html.erb
+<%= form+for(@task) do |r| %>
+title: <%= r.text_field :title %> <br/>
+<%= r.submit %>
+<% end %>
+
+-----
+
+app/views/tasks/edit.html.erb
+
+<%= render 'form' %>
+
+-----
+
+app/views/tasks/new.html.erb
+
+<%= render 'form' %>
+
+-----
+
+app/views/tasks/show.html.erb
+
+<h1> <%= @task.title %> </h1>
+
+-----
+
+app/views/tasks/index.html.erb
+
+<p>Here are some Tasks:</p>
+<ul>
+    <% @tasks.each do |task| %>
+    <li> <%= task.title %>   </li>
+    <ul>
+        <li> <%= link_to 'Edit', edit_task_path(task) %>    </li>
+        <li> <%= link_to 'Delete', task_path(task), method: :delete %>    </li>
+    <% end %>
+    </ul>
+
+</ul>
