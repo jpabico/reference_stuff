@@ -1,234 +1,65 @@
-Here are my notes about APIs from when I first started learning about this stuff...
-        HTTP = HyperText Transfer Protocol
-        ...it's a fancy way of saying "rules for getting something from one place to another"
-        ...in this case, the rules are for transferring web pages to your browser
-
-sample js file that requests information from a server...
-
-var xhr = new XMLHttpRequesy();
-xhr.open("GET", "http://www.codeacademy.com/", false);
-xhr.send();
-
-console.log(xhr.status);
-console.log(xhr.statusText);
-
-this request returns 200 / OK
-
-we can use HTTP to grab info from just about any web page on the internet. these pages come from servers.
-
-clients make an HTTP request.  The server sends a response back.
-
-This client/server relationship is a prerequisite of a set of principles called REST 
-
-Representational State Transfer
-
-Whenever you navigate through a site by clicking links, you're making a state transition, which brings you to the next page (representing the next state of the app) - that's it!
-
-by following this simple model of clicking from page to page, you're starting to follow REST principles.  (Restful)
-
-API (application programming interface) = specifies the ways a program can interact with an application.  fro example, if you want to write a program that reads and analyzes dara from twitter, you'd need to use the twitter api, which would specify the process for authentication, imporant URLs, classes, methods and so on.
-For an API or web service to be RESTful, it must do the following:
-- separate the client from the server
-- not hold state between requests (meaning that all the information necessary to respond to a request is available in each individual request)...no data (or state) is held by the server from request to request
-- use http and http methods (see below)
-
-4 HTTP verbs...GET (read), POST (create), PUT (update), DELETE (destroy)
-
-
-anatomy of a request - made up of 3 parts
-
-request line - tells the server what kind of request is being sent (GET, POST, etc) and what resource it's looking for
-
-header - sends the server additional info (e.g. which client is making the request)
-
-body - empty (GET request) or contains data (POST, PUT)
-
-// POST /codecademy/learn-http HTTP/1.1     ...request line
-// Host: www.codecademy.com                         ...header
-// Content-Type: text/html; charset=UTF-8
-
-// Name=Eric&Age=26                                     ...data
-
-endpoints are API-defined locations where particular data are stored.  You'll GET something different different depending on the endpoint you use.
-
-for example, if you're using the API for a video hosting service, there might be endpoints for the most popular videos, the most recent videos, or videos belonging to a certain category, etc
-
-many APIs require an API key that grants you access to a particular API.  the key identifies you to the API, which helps the API provider keep track of how their service is used and prevent unauthorized/malicious activity
-
-some APIs require authentication using a protocol called OAuth
-
-API keys are long/alphanumeric
-
-a successful request to the server results in a response which is the message the server sends back to the client (you!)
-
-the response from the server will contain a 3-digit status code
-
-anatomy of a response
-
-response line = includes 3-digit HTTP status code
-header = includes information about the server and its response
-body = contains the text of the response
-
-parsing (or analyzing) XML (extensible markup language)
-
-as long as you document the structure of your API's response, other people can use your API to get information
-
-JSON is an alternative to XML.
-
-let's use this information to use the YouTube API
-
-boilerplate code (below) sets up a basic HTML document and includes 2 js files (one is the Google APIs JS client library and search.js used for customizing code)
-
-// Your use of the YouTube API must comply with the Terms of Service:
-// https://developers.google.com/youtube/terms
-
-// Helper function to display JavaScript value on HTML page.
-function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
-}
-
-// Called automatically when JavaScript client library is loaded.
-function onClientLoad() {
-    gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
-}
-
-// Called automatically when YouTube API interface is loaded (see line 9).
-function onYouTubeApiLoad() {
-    // This API key is intended for use only in this lesson.
-    // See http://goo.gl/PdPA1 to get a key for your own applications.
-    gapi.client.setApiKey('AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE');
-    
-    // Add code here to test out showResponse():
-    showResponse("Hooray!");
-}
-
-
-
-now let's make some calls to the API - a bsic request to search YouTube
-
-
-// Your use of the YouTube API must comply with the Terms of Service:
-// https://developers.google.com/youtube/terms
-
-// Helper function to display JavaScript value on HTML page.
-function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
-}
-
-// Called automatically when JavaScript client library is loaded.
-function onClientLoad() {
-    gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
-}
-
-// Called automatically when YouTube API interface is loaded (see line 9).
-function onYouTubeApiLoad() {
-    // This API key is intended for use only in this lesson.
-    // See http://goo.gl/PdPA1 to get a key for your own applications.
-    gapi.client.setApiKey('AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE');
-
-    search();
-}
-
-function search() {
-    // Use the JavaScript client library to create a search.list() API call.
-    var request = gapi.client.youtube.search.list({
-        part: 'id'
-    });
-    
-    // Send the request to the API server,
-    // and invoke onSearchRepsonse() with the response.
-    request.execute(onSearchResponse);
-}
-
-// Called automatically with the response of the YouTube API request.
-function onSearchResponse(response) {
-    showResponse(response);
-}
-
-at this point, we've made a search request and desplayed the response on the page.
-
-// Your use of the YouTube API must comply with the Terms of Service:
-// https://developers.google.com/youtube/terms
-
-// Helper function to display JavaScript value on HTML page.
-function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
-}
-
-// Called automatically when JavaScript client library is loaded.
-function onClientLoad() {
-    gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
-}
-
-// Called automatically when YouTube API interface is loaded (see line 9).
-function onYouTubeApiLoad() {
-    // This API key is intended for use only in this lesson.
-    // See http://goo.gl/PdPA1 to get a key for your own applications.
-    gapi.client.setApiKey('AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE');
-
-    search();
-}
-
-function search() {
-    // Use the JavaScript client library to create a search.list() API call.
-    var request = gapi.client.youtube.search.list({
-        part: 'snippet'
-    });
-    
-    // Send the request to the API server,
-    // and invoke onSearchRepsonse() with the response.
-    request.execute(onSearchResponse);
-}
-
-// Called automatically with the response of the YouTube API request.
-function onSearchResponse(response) {
-    showResponse(response);
-}
-
-
-the q parameter tells the API to only include YouTube search results whose title/description.words match the value you pass in...
-
-// Your use of the YouTube API must comply with the Terms of Service:
-// https://developers.google.com/youtube/terms
-
-// Helper function to display JavaScript value on HTML page.
-function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
-}
-
-// Called automatically when JavaScript client library is loaded.
-function onClientLoad() {
-    gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
-}
-
-// Called automatically when YouTube API interface is loaded (see line 9).
-function onYouTubeApiLoad() {
-    // This API key is intended for use only in this lesson.
-    // See http://goo.gl/PdPA1 to get a key for your own applications.
-    gapi.client.setApiKey('AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE');
-
-    search();
-}
-
-function search() {
-    // Use the JavaScript client library to create a search.list() API call.
-    var request = gapi.client.youtube.search.list({
-        part: 'snippet',
-        q: 'perry'
-    });
-    
-    // Send the request to the API server,
-    // and invoke onSearchRepsonse() with the response.
-    request.execute(onSearchResponse);
-}
-
-// Called automatically with the response of the YouTube API request.
-function onSearchResponse(response) {
-    showResponse(response);
-}
-
-
+<!DOCTYPE> 
+<html>
+<head>
+    <title>API Notes</title>
+</head>
+<body>
+
+    <h1>API Notes</h1>
+
+    <p> My notes about APIs from when I first started learning about this stuff...</p>
+
+    <ul>
+        <li> HTTP = HyperText Transfer Protocol.  It's a fancy way of saying "rules for getting something from one place to another".</li>
+
+        <li>Clients make an HTTP request.  The server sends back a response.</li>
+        
+        <li>Navigating through a site by clicking links brings you to the next page (representing the next state of the app - a state transition).  By following this model of clicking from page to page, you're starting to follow REST (Representational State Transfer) principles(see below).</li>
+
+        <li>API (application programming interface) specify ways a program can interact with an app (e.g. a program that reads/analyzes data from Twitter uses the Twitter API, which would specify the process for authentication, imporant URLs, classes, methods, etc).</li>
+
+        <li>API endpoints are locations where particular data are stored (e.g. an API for a video hosting service might have endpoints for the most popular videos, the most recent videos, or videos belonging to a certain category).</li>
+
+        <li>Some APIs require an API key that grants access and identifies the to the API, which helps the API provider keep track of how their service is used and prevent unauthorized/malicious activity.  Some APIs require authentication using a protocol called OAuth. </li>
+
+        <li>RESTful APIs and web services:
+            <ol>
+                <li>separate the client from the server</li>
+                <li>do not hold state between requests (i.e. all the info needed to respond to a request is available in each individual request - no data or state is held by the server from request to request)</li>
+                <li>use http and http methods (4 HTTP Verbs): GET (read), POST (create), PUT (update), and DELETE (destroy)</li>
+            </ol>
+        </li>
+
+        <li>The Request...
+            <ol>
+                <li>request line - tells the server what kind of request is being sent (GET, POST, etc) and what resource it's looking for</li>
+                <li>header - additional info (e.g. which client is making the request)</li>
+                <li>body - empty (GET request) or contains data (POST, PUT)</li>
+            </ol>
+        </li>  
+
+        <li>The Response...
+            <ol>
+                <li>response line - includes 3-digit HTTP status code</li>
+                <li>header - includes info about the server and its response</li>
+                <li>body - contains the text of the response</li>
+            </ol>
+        </li>
+
+        <li>As long as the structure of the API's response is documented, other people can use the API to get info.</li>
+
+        <li>Response data needs to be parsed (analyzed).  Often sent as XML or JSON.</li>
+
+         <li>Examples of Useful / Popular APIs:
+            <ul>
+                <li>Twitter</li>
+                <li>YouTube</li>
+                <li>GoogleMaps</li>
+                <li>PayPal</li>
+                <li>GitHub</li>
+                <li>Facebook</li>
+            </ul>
+        </li>
+
+</body>
+</html>
