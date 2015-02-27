@@ -1,0 +1,38 @@
+<h1>Miscellaneous Ruby Stuff</h1>
+
+<h2>Setting Default Values</h2>
+
+<pre>
+    ||= is used to set a variable's  default value if its value is false/null
+    a  ||=  b  is  a  ||  a  =  b
+
+    misconception  a = a  ||  b (not correct)
+</pre>
+
+<h2>Organizing Files</h2>
+
+<pre>
+    module Name_of_module
+        ---code---
+    end
+
+    class Testing
+        include Name_of_module
+        ---code---
+    end
+
+    root
+            rspec_example
+                    book.rb
+                    spec
+                            book_spec.rb
+                            spec_helper.rb
+
+
+
+inside book_spec.rb ...   require 'spec_helper'
+
+inside spec_helper.rb...   require_relative '../book'
+inside spec_helper.rb...   require yaml
+</pre>
+
