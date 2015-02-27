@@ -188,5 +188,10 @@ end
 
 our_program
 
+# more examples
+
+
+
 # closures
 
+# look at the end of youtube > intro to procs lambdas closures by cooper press
