@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTTP Requests in Rails</title>
+    <style>
+        ul {
+            list-style-type:none;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>General notes about HTTP Requests in Rails</h1> 
+
+    <h2>Example 1</h2>
+
+        <p> The first line of an HTTP request (the request line) contains 4 elements: URI, headers, body, and method.</p>
+        <pre>
+            In routes... 
+
+            BackToBasics::Application.routes.draw do
+                match '/curl_example' => 'request_example#curl_get_example', via: :get
+                match '/curl_example' => 'request_example#curl_post_example', via: :post
+            end
+        </pre>
+        <pre>
+            In the controller...
+
+            class RequestExampleController (less_than_sign) ActionController::Base
+                def curl_get_example
+                    render text: 'Thanks for sending a GET request with cURL!'
+                end
+
+                def curl_post_example
+                    render text: 'Thanks for sending a POST request with cURL! Payload: #{request.body.read}'
+                end
+            end  
+        </pre>
+        <p>In CLI...  curl -X GET http://localhost:3000/curl_example</p>
+        <p>Response = Thanks for sending a GET request with cURL!</p>
+
+        <p>In CLI...  curl -X POST -d "backToBasic=for the win"  http://localhost:3000/curl_example</p>
+        <p>Response = Thanks for sending a GET request with cURL! Payload: backToBasics=for the win</p>
+            
+    <h2>Example 2</h2>
+
+        <pre>
+            In routes... 
+
+            BackToBasics::Application.routes.draw do
+                root to: 'request_example#index'
+                match '/request' => 'request_example#create', via: :post
+                match '/request' => 'request_example#create', via: :get
+            end
+        </pre>
+        <pre>
+            In the controller...
+
+            class RequestExampleController (less_than_sign) ActionController::Base
+                def index
+                end
+
+                def create
+                    render json: params
+                end
+            end  
+        </pre>
+        <p>In address bar... localhost:3000</p>
+        <p>results: rails console shows similar results to GET request above</p>
+
+
+
+
+
+
+</body>
+</html>
