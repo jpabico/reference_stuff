@@ -12,6 +12,9 @@
     <!-- 9 Uses for cURL Worth Knowing -->
     <!-- http://httpkit.com/resources/HTTP-from-the-Command-Line/ -->
 
+    <!-- also Huseyin Yilmaz's site -->
+    <!-- http://www.yilmazhuseyin.com/blog/dev/curl-tutorial-examples-usage/ -->
+
 </head>
 <body>
     <ul>
@@ -79,6 +82,45 @@
         <li>useful for API that make use of response headers to provide info on authorization, rate limits, caching, etc</li>
         <li>REQUEST - curl -i echo.httpkit.com</li>
         <li>RESPONSE - contains header and body</li>
+        <li>******************</li>
+        <li>******************</li>
+        <li>******************</li>
+        <li>******************</li>
+    </ul>
+    <ul>
+        <li>curl is a LINUX utitlity that is used to make HTTP request to a given URL.  It outputs HTTP response to standard output (the terminal window)</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>make a GET request without any data - curl http://url.com</li>
+        <li>also curl --request GET 'http://url.com'  (in this syntax GET can be replaced with a different method, still with no data)</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>make  POST request with data</li>
+        <li>curl --request POST 'http://url.com' \ --data 'username=myusername&password=mypassword'</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>make GET request with search data</li>
+        <li>curl --request GET 'http://url.com/results?search_query=my_keyword'</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>send PUT request with data</li>
+        <li>curl --request PUT 'http://url.com' \ --data 'email=myemail@example.com'</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>same as above but from a file name data.txt</li>
+        <li>curl --request PUT 'http://url.com' \ --data @data.txt</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>make a request with extra headers</li>
+        <li>curl --request GET 'http://url.com' \ --header 'sessionid:12345'</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>get response with HTTP headers</li>
+        <li>curl --request GET 'http://url.com' --include</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>curl --help will give a brief description of parameters</li>
+        <li>man curl will give you the manual</li>
     </ul>
 </body>
 </html>
