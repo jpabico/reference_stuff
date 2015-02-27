@@ -128,4 +128,65 @@ end
 compare_proc_with_arg.call          #=> works fine
 compare_lambda_with_arg.call     #=> gives an error
 
-# 2) 
+# 2) lambda returns
+
+def run_proc_or_lambda(blockblock)
+    puts "station 1 of 3"
+    blockblock.call
+    puts "station 3 of 3"
+end
+
+
+lambda_block = lambda {puts "Station 2 of 3 (in lambda)"; return}
+proc_block = Proc.new { puts "Station 2 of 3 (in a proc)"; return}
+
+
+run_proc_or_lambda (lambda_block)       #=> runs fine
+run_proc_or_lambda (proc_block)             #=> unexpected return error
+
+# proc tries to return from the context of where it was defined, not from where it is currently
+# proc is defined in global scope as proc_block
+
+# trick fix - wrap original proc definition in a function and call the function
+
+
+def run_proc_or_lambda_2(blockblock)
+    puts "station 1 of 3"
+    blockblock.call
+    puts "station 3 of 3"
+end
+
+def our_program
+    lambda_block_2 = lambda {puts "Station 2 of 3 (in lambda)"; return}
+    proc_block_2 = Proc.new { puts "Station 2 of 3 (in a proc)"; return}
+
+    run_proc_or_lambda_2 (lambda_block_2)      #=> runs fine
+    run_proc_or_lambda_2 (proc_block_2)             #=> now returns from function (our_program)
+                                                                                    # proc never gets to station 3 because it doesn't return from run_proc_or_lambda_2
+                                                                                  # proc was originally defined in our_program, so that's where it returns from
+end
+
+our_program
+
+
+# same thing but this time run_proc_or_lambda_2(proc_block_2) is put first
+# results in lmbda never getting called because proc returns from our_program before run_proc_or_lambda(lambda_block_2) is run
+
+def run_proc_or_lambda_2(blockblock)
+    puts "station 1 of 3"
+    blockblock.call
+    puts "station 3 of 3"
+end
+
+def our_program
+    lambda_block_2 = lambda {puts "Station 2 of 3 (in lambda)"; return}
+    proc_block_2 = Proc.new { puts "Station 2 of 3 (in a proc)"; return}
+
+    run_proc_or_lambda_2 (proc_block_2)             
+    run_proc_or_lambda_2 (lambda_block_2)  
+end
+
+our_program
+
+# closures
+
