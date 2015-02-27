@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intro to cURL</title>
+    <style>
+        ul {
+            list-style-type:none;
+        }
+    </style>
+    <!-- Sources -->
+
+    <!-- 9 Uses for cURL Worth Knowing -->
+    <!-- http://httpkit.com/resources/HTTP-from-the-Command-Line/ -->
+
+</head>
+<body>
+    <ul>
+        <li>Working with HTTP from CLI is a valuable skill for HTTP architects and API designers</li>
+        <li>cURL library and curl command gives ability to design a request and explore the response</li>
+        <li>try out examples on CLI</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>simplest curl command is making a request</li>
+        <li>REQUEST - curl http://echo.httpkit.com</li>
+        <li>RESPONSE - JSON</li>
+        <li>default method is GET</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>path and query string parameters can be added</li>
+        <li>REQUEST - curl http://echo.httpkit.com/path?query=string</li>
+        <li>RESPONSE - path and query info now available in header</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>use -X to set method GET POST PUT DELETE</li>
+        <li>http:// can be left off (default)</li>
+        <li>REQUEST - curl -X POST echo.httpkit.com</li>
+        <li>REQUEST - curl -X DELETE echo.httpkit.com</li>
+        <li>RESPONSE - JSON with method attribute shown</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>set request headers with -H</li>
+        <li>allow clients to provide servers with meta info for things like authorization, capabilities, body content-type</li>
+        <li>REQUEST - curl -H "Authorization: OAuth 2cow443doge1cat" \ http://echo.httpkit.com</li>
+        <li>multiple headers can be set</li>
+        <li>REQUEST - curcl -H "Accept: application/json" \  -H "Authorization: OAuth 2sfdffsfdf" \ http://echo.httpkit.com</li>
+        <li>RESPONSE - shows attributes in header</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>use -d to send request body</li>
+        <li>REQUEST - curl -X PUT \ -H 'Content-Type: application/json' \ -d '{"firstName":"Kris", "lastName":"Jordan"}' echo.httpkit.com</li>
+        <li>RESPONSE - body include serialized JSON object</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>use file_name_with_data.json as a request body</li>
+        <li>REQUEST - curl -X PUT \ -H 'Content-Type: application/json' \ -d @file_name_with_data.json echo.httpkitcom</li>
+        <li>RESPONSE - same as above</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>use -d to POST HTML form data</li>
+        <li>REQUEST - curl -d "firstName=Kris" \ -d "lastName=Jordan" \ echo.httpkit.com</li>
+        <li>RESPONSE - body will contain data</li>
+        <li>no need for -X POST (default is POST when form field data used)</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <p>When you make a POST request, you have to encode the data that forms the body of the request in some way.  One way to do it is by using a form tag with the attribute enctype='multipart/form-data'</p>
+        <p>When you are writing client-side code, multipart/form-data is used when the form includes any input tags with attribute type='file' elements.  (read up on forms in HTML later...)</p>
+        <li>use -F to POST HTML multipart file forms</li>
+        <li>automatically defaults to POST</li>
+        <li>REQUEST - curl -F 'firstName=Kris' \ -F 'publicKey=@file_name.pub;type=text/plain' \ echo.httpkit.com</li>
+        <li>RESPONSE - body will contain form data</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>To test a virtual host or a caching proxy before modifying DNS and without overriding hosts, use curl to point request at the host's IP address and averride the default Host header curl sets up</li>
+        <li>REQUEST - curl -H "Host: google.com" 50.112.251.120</li>
+        <li>RESPONSE - ...</li>
+        <li>---------------</li>
+        <li>---------------</li>
+        <li>use -i to view headers and the body</li>
+        <li>useful for API that make use of response headers to provide info on authorization, rate limits, caching, etc</li>
+        <li>REQUEST - curl -i echo.httpkit.com</li>
+        <li>RESPONSE - contains header and body</li>
+    </ul>
+</body>
+</html>
