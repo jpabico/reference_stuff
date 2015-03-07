@@ -114,7 +114,54 @@
             $.get(url, callback);
         &lt/script&gt
     </pre>
-    <h3>Example 2 - $.ajax() ...The Ultimate Method!</h3>
+    <h3>Example 2 - POST Request</h3>
+    <pre>
+        &ltscript&gt
+            $(document).ready(function() {
+                $('form').submit(function(e) {
+                    e.preventDefault();
+                    var url = $(this).attr("action");
+                    var form_data = $(this).serialize();
+                    $.post(url, form_data, function(response){
+                        $('#signup').html("&ltp&gtThanks!&lt/p&gt");
+                    });
+                });
+            });
+        &lt/script&gt
+
+        In HTML...
+
+        &ltform method="POST" action="/signup" &gt
+            &ltlabel>&gt &lt/label&gt
+            &ltinput id = " "&gt &lt/input&gt
+        &lt/form&gt
+    </pre>
+    <p>.serialize() encodes as a tring for submission</p>
+    <p>e.preventDefault stops default action (for example, submit button from submitting form, link from following url, etc)</p>
+    <p>e.isDefaultPrevented() can be used to check if the preventDefault() method was called for the event</p>
+    <h3>Example 3 - Office Example w/jQuery</h3>
+    <pre>
+        &ltscript&gt
+            $(document).ready(function(){
+                var url = "../data/employees.json"
+                $.getJSON(url, function(response) {
+                    var statusHTML = '&ltul class="bulleted" &gt';
+                    $.each(response, function(index, employee){
+                        if(employees[i].inoffice===true) {
+                            statusHTML += '&ltli class="in" &gt' ;
+                        } else {
+                            statusHTML += '&ltli class="out" &gt' ;
+                        }
+                        statusHTML += employee[i].name;
+                        statusHTML += '&lt/li &gt' ;
+                    });
+                    statusHTML += '&lt/ul&gt'
+                    $('employeeList').html(statusHTML);
+                });
+            });
+        &lt/script&gt
+    </pre>
+    <h3>Example 4 - $.ajax() ...The Ultimate Method!</h3>
     <pre>
         &ltscript&gt
             var some_data = {some hash/JSON };
