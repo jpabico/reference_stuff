@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Notes</title>
+</head>
+<body>
+
+<h1>Some notes  for jQuery</h1>
+    <h2>Making a request</h2>
+    <ol>
+        <li>Browser requests a webpage from server</li>
+        <li>Server response by sending a response (HTML + other files)</li>
+        <li>Browserloads files into DOM</li>
+    </ol>
+
+        <h2>jQuery basics</h2>
+            <p>Documentation at api.jquery.com</p>
+            <p> &lt script_tag type="text/javascript" src=''jQuery_library_url.com" &gt &lt /script &gt</p>
+            <p>General syntax:  $(---selector---).someAction(---do something---)</p>
+            <p>
+                Selectors can be saved
+                <pre>
+                    examples:        
+                            var paragraph = $("p");
+                            var paragraf = $("&ltp&gt...&lt/p&gt")
+                </pre>
+            </p>
+            <p>
+                General set up to use jQuery in a document:
+                <pre>
+                    $(document).ready (function() {
+                        ---code block ---
+                    });
+                </pre>
+            </p>
+            <h2>Sample jQuery API functions:</h2>
+            <ul>
+                ----- see documentation for details -----
+                <li>.find()</li>
+                <li>.hide()</li>
+                <li>.show()</li>
+                <li>.html()</li>
+                <li>.on()</li>
+                <li>.off()</li>
+                <li>.css()</li>
+                <li>.click()</li>
+                <li>.attr()</li>
+                <li>.val()</li>
+                <li>.text()</li>
+                <li>.each()</li>
+                <li>.mouseenter()</li>
+                <li>.mouseleave()</li>
+                <li>.keydown()</li>
+                <li>.dblclick()</li>
+                <li>.focus()</li>
+                <li>.addClass()</li>
+                <li>.removeClass()</li>
+                <li>.toggleClass()</li>
+                <li>.height()</li>
+                <li>.width()</li>
+                <li>.append()</li>
+                <li>.prepend()</li>
+                <li>.appendTo()</li>
+                <li>.prependTo()</li>
+                <li>.empty()</li>
+                <li>.remove()</li>
+                <li>.after()</li>
+                <li>.before()</li>
+                <li>.fadeIn()</li>
+                <li>.fadeOut()</li>
+                <li>.slideDown()</li>
+                <li>.slideToggle()</li>
+                <li>.hover()</li>
+                <li>.accordion()</li>
+                <li>.sortable()</li>
+                <li>.draggable()</li>
+                <li>.resizable()</li>
+                <li>.selectable()</li>
+                <li>.animate()</li>
+                <li>.effect()</li>
+            </ul>
+            
+</body>
+</html>
