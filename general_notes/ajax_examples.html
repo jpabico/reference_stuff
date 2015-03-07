@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Notes</title>
+</head>
+<body>
+    <h1>Some notes for AJAX (with and without jQuery)</h1>
+
+    <h2>AJAX calls (no jQuery)</h2>
+    <ol>
+        <li>Create HMLHttpRequest() object</li>
+        <li>Create call back function</li>
+        <li>Open request</li>
+        <li>Send request</li>
+    </ol>
+    <h3>Example 1 - Basic</h3>
+    <pre>
+        &ltscript&gt
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState===4) {
+                    document.getElementById('xy').innerHTML = xhr.responseText;
+                };
+                xhr.open('GET', 'url_server.com');
+                xhr.send();
+            }
+        &lt/script&gt
+    </pre>
+    <h3>Example 2 - Make a button disappear after AJAX call is sent</h3>
+    <p>Steps 1, 2, and 3 are the same.  Step 4...</p>
+    <pre>
+        function sendAJAX() {
+            xhr.send();
+            document.getElementById('load').style.display = 'none';
+        }
+    </pre>
+    <pre>
+        In HTML...
+
+        &ltbutton id='load' onclick='sendAJAX()' &gt My Button &lt/button&gt
+    </pre>
+    <h3>Example 3 - More extensive callback functions</h3>
+    <pre>
+        &ltscript&gt ...
+
+            if(xhr.readyState===4 &amp&amp xhr.status===200) {
+                --- do something #1 ---
+            } else {
+                --- do something #2 ---
+            }
+            
+            --- or ---
+
+            if(xhr.readyState===4) {
+                if(xhr.status===200) {
+                    --- block #1 ---
+                } else if (xhr.status===404) {
+                    --- block #2 ---
+                } else {
+                    --- block #3 ---
+                }
+            }
+
+        ... &lt/script&gt
+    </pre>
+    <h3>Example 4 - Loading data into HTML after AJAX request</h3>
+    <pre>
+        In callback function in state change function...
+        &ltscript&gt ...
+
+            if(xhr.readyState===4) {
+                    var employees = JSON.parse(xhr.responseText);
+            }
+            xhr.open('GET', 'data/employees.json');
+                xhr.send();
+            }
+
+            var statusHTML = '&ltul class="bulleted" &gt';
+            for(var i = 0; i &lt employees.length; i+=1) {
+                if(employees[i].inoffice===true) {
+                    statusHTML += '&ltli class="in" &gt' ;
+                } else {
+                    statusHTML += '&ltli class="out" &gt' ;
+                }
+                statusHTML += employee[i].name;
+                statusHTML += '&lt/li &gt' ;
+            }
+            statusHTML += '&lt/ul&gt'
+            document.getElementById('employeeList').innerHTML = statusHTML;
+
+        ... &lt/script&gt
+    </pre>
+    <h2>AJAX Calls with jQuery</h2>
+
+    <p>Only 1 step instead of 4!</p>
+    <p>No selectors are required, but arguments still are</p>
+    <p>5 common jQuery AJAX methods</p>
+    <ol>
+        <li>$.get()</li>
+        <li>$.getJSON()</li>     
+        <li>$.getScript()</li>
+        <li>$.post</li>
+        <li>$.load()</li>
+    </ol>
+
+    <p>See documentation for required arguments/explanations.</p>
+    <h3>Example 1 - Basic</h3>
+    <pre>
+        &ltscript&gt
+            var url = 'server.com';
+            var callback = function(response) {
+                --- code block ---
+            };
+            $.get(url, callback);
+        &lt/script&gt
+    </pre>
+    <h3>Example 2 - $.ajax() ...The Ultimate Method!</h3>
+    <pre>
+        &ltscript&gt
+            var some_data = {some hash/JSON };
+            var url = 'server.com';
+            $.ajax(url, {
+                data: some_data,
+                type: 'POST',
+                success: function(response) {
+                    $('signup').html("&ltp&gt Thanks! &lt/p&gt")
+                }
+            });
+        &lt/script&gt
+    </pre>
+    <p>Warning - $.ajax() fails silently</p>
+    <p>The .fail() function can be chained to most of jQuery's AJAX methods (not .load())</p>
+    <p>Example: $.get().fail(function(jqxhr) { alert(jqxhr.status); });</p>
+    <p>...or $.get().fail(function(jqxhr) { alert(jqxhr.statusText); });</p>
+
+</body>
+</html>
