@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Starting Tumblr-Clone</title>
+</head>
+<body>
+<h1>General steps for creating Tumblr clone</h1>
+<h2>Models</h2>
+    <ul>
+        <li>rails new diary</li>
+        <li>rails generate resource User name email</li>
+        <li>rails generate model Subscription leader:references follower:references</li>
+        <li>In Subscription model (join table)...
+            <p>belongs_to :leader, class_name: 'User'</p>
+            <p>belongs_to :follower, class_name: 'User'</p>
+        </li>
+        <li>In User model...
+            <p>has_many :subscriptions, foreign_key: :follower_id, dependent: :destroy</p>
+            <p>has_many :leaders, through: :subscriptions</p>
+            <p>has_many :reverse_subscriptions, foreign_key:  :leader_id, class_name: 'Subscription', dependent: :destroy</p>
+            <p>has_many :followers, through: :reverse_subscriptions</p>
+            <p>def following?(leader)
+                leaders.include/.(leader)
+                end</p>
+                <p>def follow!(leader)
+                    if leader != self && !following(leader)
+                    leaders &lt &lt leader
+                    end</p>
+
+        </li>
+        <li>rails generate resource Post title body:text url type user:references</li>
+        <li>rake db:migrate</li>
+        <li>rails generate resource TextPost --parent=Post --migration=false</li>
+        <li>rails generate resource ImagePost --parent=Post --migration=false</li>
+        <li>Post model...validates :user_id, presence: true
+            validates: type, presence: true</li>
+        <li>ImagePost model...validates :url, presence: true</li>
+        <li>TextPost model...validates :body, presence: true</li>
+        <li>User model...has_many posts, dependent: :destroy
+            has_many :text_posts, dependent: :destroy
+            has_many :image_posts, dependent: :destroy</li>
+        <li>rails generate resource Comment body:text post:references user:references</li>
+        <li>add has_many :comments to User/Post models</li>
+        <li>add validations to the comment model (user_d, post_id, body)</li>
+    </ul>
+    <h2>Authentication</h2>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>
