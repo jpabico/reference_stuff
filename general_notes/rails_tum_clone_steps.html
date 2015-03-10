@@ -45,25 +45,38 @@
     </ul>
     <h2>Authentication</h2>
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>
+            add Bootstrap:
+            <ul>
+                <li>Create a new file (app/assets/stylesheets/bootstrap_customization.css.scss)</li>
+                <li>add one line:  @import "bootstrap";</li>
+                <li>in JS application file: //= require bootstrap</li>
+                <li>add to Gemfile: gem 'bootstrap-sass' (bundle install)</li>
+                <li>in layout/application.html.erb, put yield in div (class="container") + notice/alert erb tags</li>
+            </ul>
+        </li>
+        <li>start post controller/views + partials</li>
+        <li>
+            Sign up:
+            <ul>
+                <li>uncomment bcrypt gem (bundle install)</li>
+                <li>rails generate migration AddPasswordDigestToUsers password_digest</li>
+                <li>User model: has_secure_password validates email (presence/uniqueness)</li>
+                <li>routes: get 'signup', to: 'users#new', as: 'signup'</li>
+                <li>also to routes: root 'posts#index'</li>
+                <li>User controller/views (form for signup)</li>
+            </ul>
+        </li>
+        <li>Log in:
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
         <li></li>
         <li></li>
     </ul>
