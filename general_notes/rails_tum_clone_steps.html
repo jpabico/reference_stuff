@@ -67,13 +67,19 @@
                 <li>User controller/views (form for signup)</li>
             </ul>
         </li>
-        <li>Log in:
+        <li>Login/logout:
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>rails generate controller Sessions</li>
+                <li>routes:
+                    <ul>
+                        <li>resources :sessions</li>
+                        <li>get 'login', to: 'sessions#new', as: 'login'</li>
+                        <li>get 'logout', to: 'sessions#destroy', as: 'logout'</li>
+                    </ul>   
+                </li>
+                <li>sessions controller and view (new)</li>
+                <li>application controller: current_user and authenticate_user! helper methods</li>
+                <li>posts controller - before_action :authentica_user!</li>
                 <li></li>
             </ul>
         </li>
