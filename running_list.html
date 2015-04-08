@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Running List</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <h1>Review Running List</h1>
+    <p>Give me an update!</p>
+    <form>
+        <textarea id='topic' placeholder='What I reviewed today...'></textarea>
+        <input id='fileLocation' placeholder='File...'>
+        <textarea id='takeAway' placeholder='Take Away...'></textarea>
+        <input id='addButton' type='button' value='Add to Table' />
+    </form>
+    <table id='runningList'>
+        <tr>
+            <th>What I reviewed today</th>
+            <th>File</th>
+            <th>Take Away</th>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+
+        var add = document.getElementById('addButton');
+
+        add.onclick= function() {
+            var myTopic = document.getElementById('topic').value;
+            var myLocation = document.getElementById('fileLocation').value;
+            var myTakeAway = document.getElementById('takeAway').value;
+
+            var myRunningList = document.getElementById('runningList');
+            var newRow = myRunningList.insertRow(1);
+
+            newRow.insertCell(0).innerHTML = myTopic;
+            newRow.insertCell(1).innerHTML = myLocation;
+            newRow.insertCell(2).innerHTML = myTakeAway;
+
+            document.getElementById('topic').value='';
+            document.getElementById('fileLocation').value='';
+            document.getElementById('takeAway').value='';
+        };
+
+    </script>
+
+   <!--  var addNewInfo = document.getElementById('addIt');
+        var theTable = document.getElementById('myTable');
+
+        addNewInfo.onclick=function() {
+            var last = document.getElementById('lastName').value;
+            var first = document.getElementById('firstName').value;
+            var ageage = document.getElementById('age').value;
+           
+            var a = theTable.insertRow(1);
+            a.insertCell(0).innerHTML = last;
+            a.insertCell(1).innerHTML = first;
+            a.insertCell(2).innerHTML = ageage;
+            
+        }; -->
+
+</body>
+</html>
