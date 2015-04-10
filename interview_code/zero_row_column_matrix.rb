@@ -6,6 +6,15 @@ def replace_with_zeros(input_matrix, locations_of_zeros)
     # input_matrix[2][2] = 0
     # input_matrix
 
+    # set up loops
+    locations_of_zeros.each_with_index do |x, i|
+        # change all x's to zeros?
+        x.each_with_index do |y, j|
+            # then change all y's to zero's
+            # ...do some testing first...
+        end
+    end
+
     return "returning from function replace_with_zeros"
 end
 
