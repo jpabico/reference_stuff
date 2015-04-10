@@ -1,3 +1,14 @@
+def replace_with_zeros(input_matrix, locations_of_zeros)
+    # for each locations of zero [x, y] fo the following
+    # replace all [x, loop_iterater] in input_matrix with 0
+    # replace all [loop_iterater, y] in input_matrix with 0
+    # example...
+    # input_matrix[2][2] = 0
+    # input_matrix
+
+    return "returning from function replace_with_zeros"
+end
+
 def zero_row_column_matrix(input_matrix)
     locations_of_zeros = []
     input_matrix.each_with_index do |x, i|
@@ -7,7 +18,9 @@ def zero_row_column_matrix(input_matrix)
             end
         end
     end
-    locations_of_zeros.inspect
+    
+    a = replace_with_zeros(input_matrix, locations_of_zeros)
+    return a + " and function zero_row_column_matrix"
 end
 
 
