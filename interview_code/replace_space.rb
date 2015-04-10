@@ -1,3 +1,5 @@
 def replace_space(input_string)
-    # replace all spaces with a %20
+    input_string.gsub(" ", "%20")
 end
+
+replace_space("Anyone up for tennis?")
