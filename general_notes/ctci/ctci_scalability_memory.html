@@ -39,10 +39,13 @@
     <p>
         Possible solution to the above scenario:
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>Divide words alphabetically by keyword so that each machine controls a range of words.</li>
+                <li>Implement a simple algorith to iterate through keywords, storing as much data as possible on each machine.  This gives a non-complex and relatively small lookup table.  Each machine can then store a copy of the lookup table.</li>
+                <li>A big disadvantage: if new documents/words are added, an expensive shift of keywords may need to be performed.</li>
+                <li>To find all the documents that match a list of strings, sort the list alphabetically (preprocessing) and send the part of the list to the appropriate machines.</li>
+                <li>Each machine would look up the words and put together a document list to send back to the initial machine.</li>
+                <li>The intial machine would determine the intersection of the response results from each machine.</li>
+                <li>This is just one possibility...</li>
             </ul>
     </p>
 </body>
