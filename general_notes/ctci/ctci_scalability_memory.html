@@ -16,7 +16,13 @@
         Most companies use large systems of interconnected machines.  It's helpful to have a ballpark figure of how much data a computer can store (hard drive space, RAM, internet transfer latency, etc).  
     </p>
     <p>
-        Common strategies for dividing up data include...
+        Common strategies for dividing up data include:
+        <ul> 
+            <li><strong>By Order of Appearance</strong> - As new data comes in, current machines fill up before adding additional machines if needed.  Potential problems can include a very large and complex lookup table.</li>
+            <li><strong>By Hash Value</strong> - Pick some sort of key relating to the data, hash the key, mod the hash value by the number of machines, and store the data on the machine with that value.  No lookup table is needed since each machine will automatically know where a piece of data is.  However, if a machine exceeds its capacity to store data, it may be required to shift data around to other machines for better load balancing (expensive) or split the machine's data into 2 machines (causing a tree-like structure of machines).</li>
+            <li><strong>By Actual Value</strong> - For example, in a social network, someone living in Canada will probably have a lot more friends in Canada than the average Indonesian citizen.  Similar/related data can be grouped together to reduce system latency.</li>
+             <li><strong>Arbitrarily</strong> - Implement a (potentially large and complex) lookup table and concentrate on load balancing instead</li>
+        </ul>
     </p>
 </body>
 </html>
