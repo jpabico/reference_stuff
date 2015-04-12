@@ -3,7 +3,17 @@
 <head>
     <title>Keywords Grabber</title>
     <script type="text/javascript" src='myAjaxLib.js' ></script>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        function display(content) {
+            document.getElementById('displayDiv').innerHTML = content;
+        }
+        window.onload = function() {
+            document.getElementById('btn1').onclick = function() {
+                var url = document.getElementById('text1').value;
+                doAjax('metatags.php', "url=" + url, "display", "post", 0);
+            }
+        }
+    </script>
 </head>
 <body>
     http://<input type='text' id='text1' value='' />
