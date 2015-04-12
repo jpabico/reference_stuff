@@ -31,3 +31,14 @@ function doAjax(url, query, callback, reqtype, getxml) {
         requestGET(url,query, myreq);
     }
 }
+
+function requestGET(url, query, req) {
+    var myRandom = parseInt(Math.random()*99999999);
+    if(query=='') {
+        var callUrl = url + '?rand=' + myRandom;
+    } else {
+                var callUrl = url + '?' + query + '&rand=' + myRandom;
+    }
+    req.open('GET', callUrl, true);
+    req.send(null);
+}
