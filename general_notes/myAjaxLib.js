@@ -42,3 +42,9 @@ function requestGET(url, query, req) {
     req.open('GET', callUrl, true);
     req.send(null);
 }
+
+function requestPOST(url, query, req) {
+    req.open('POST', callUrl, true);
+    req.sendRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    req.send(query);
+}
