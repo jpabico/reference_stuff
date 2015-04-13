@@ -4,13 +4,17 @@ letters = ("A".."Z").to_a
 numbers = (1..26).to_a
 letter_num_array =  letters.zip(numbers)
 letter_num_hash = letter_num_array.to_h
-names_sorted.each do |name|
+total_sum_of_all_names = 0
+names_sorted.each_with_index do |name, i|
     name_value_total = 0
     letter_array = name.split('')
     letter_array.each do |let|
-
+        name_value_total += letter_num_hash[let]
     end
+    total_sum_of_all_names += name_value_total*i
 end
+
+p total_sum_of_all_names
 
 
 
