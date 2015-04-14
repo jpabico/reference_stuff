@@ -24,7 +24,7 @@
     <div id='deathDiv'></div>
     <!-- javascript -->
     <script type="text/javascript">
-
+    function playGame() {
         var wordsArray = ["apple", "bacon", "carrot", "donut", "egg", "fish"];
         var wordsArrayLength = wordsArray.length;
         var randomizer = Math.floor(wordsArrayLength*Math.random());
@@ -76,6 +76,16 @@
             document.getElementById('deathDiv').innerHTML = deathPic;
             if(numCorrect==randomWord.length){
                 document.getElementById('messageDiv').innerHTML = currentDisplay.join('') + " -----Congratulations! You guessed the word!-----";
+                var playAgain = prompt('Play again? ("y" or "n")');
+                if (playAgain == "y") {
+                    document.getElementById('deathDiv').innerHTML = "";
+                    playGame();
+                } else if (playAgain == "n") {
+                    endGame();
+                } else {
+                    endGame();
+                }
+
             } else {
                 document.getElementById('messageDiv').innerHTML= currentDisplay.join('');
             }
@@ -84,6 +94,14 @@
             }
             wrongGuess = true;
         }
+    }
+
+    function endGame() {
+        document.getElementById('messageDiv').innerHTML = "Thanks for playing!"
+        document.getElementById('deathDiv').innerHTML = "";
+    }
+
+    playGame();
 
     </script>
 </body>
