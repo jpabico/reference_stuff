@@ -5,15 +5,24 @@
 
     <!-- css -->
     <style type="text/css">
-
+        #messageDiv {
+            border: 1px solid blue;
+            height: 30px;
+        }
     </style>
 
-    <!-- javascript -->
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
+    <input type="text" id='inputText'>
+    <button type='submit' id='guessButton'>Lock in your guess!</button>
+    <div id='messageDiv'></div>
+    <!-- javascript -->
+    <script type="text/javascript">
+        document.getElementById('guessButton').onclick = function() {
+            document.getElementById('messageDiv').innerHTML= document.getElementById('inputText').value;
+            // alert("hi");
+        }
 
+    </script>
 </body>
 </html>
