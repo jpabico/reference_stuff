@@ -32,7 +32,10 @@
         var wordLength = randomWord.length
         var wordDisplayDash = "";
         var numWrong = 0;
+        var numDash = wordLength;
         var deathPic = "";
+        var wrongGuess = true;
+        var numCorrect = 0;
 
         console.log(randomWord);
 
@@ -57,21 +60,29 @@
                 for(var j=0; j < lettersArrayLength; j++) {
                     if(lettersArray[j]===currentGuess) {
                         a = currentDisplay.splice(j, 1, currentGuess);
-                        console.log(currentDisplay)
-                    } else { 
-                        if (j==lettersArrayLength - 1) {         
-                            numWrong +=1;
-                            deathPic += "X";
-                        }
-                    }
+                        numCorrect +=1;
+                        wrongGuess = false;
+                    } 
                     document.getElementById('inputText').value='';
                 }
 
             }
 
+            if(wrongGuess) {
+                numWrong +=1;
+                deathPic += "X";
+            }
 
-            document.getElementById('messageDiv').innerHTML= currentDisplay.join('');
             document.getElementById('deathDiv').innerHTML = deathPic;
+            if(numCorrect==randomWord.length){
+                document.getElementById('messageDiv').innerHTML = currentDisplay.join('') + " -----Congratulations! You guessed the word!-----";
+            } else {
+                document.getElementById('messageDiv').innerHTML= currentDisplay.join('');
+            }
+            if (numWrong==9) {
+                document.getElementById('messageDiv').innerHTML = currentDisplay.join('') + " -----Sorry, you are out of guesses.  You have died!-----";
+            }
+            wrongGuess = true;
         }
 
     </script>
