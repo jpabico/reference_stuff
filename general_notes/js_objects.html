@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Objects</title>
+</head>
+<body>
+    <h1>Javascript Objects</h1>
+    <h2>Creating Objects</h2>
+    <pre> literal...
+        <code>
+            var car = { mileage: 0 }  //prototype is Object {}
+        </code>
+    </pre>
+    <pre> using Object.create()...
+        <code> 
+            var myCar = Object.create(car)  //prototype is whatever was inherited
+        </code>
+    </pre>
+    <pre> using constructor...
+        <code>
+            var herAccount = new Object()  //prototype is Object{}
+        </code>
+    </pre>
+    <h2>Giving Initial Properties to Objects</h2>
+    
+    <pre> one way...
+        <code>
+            function car(make) {
+                this.make = make;
+            }
+        </code>
+    </pre>
+    <pre> constructor...
+        <code>
+            function Animal() {
+                this.name = "name";
+                this.sound = "grrr";
+                this.owner = "owner";
+            }   
+        </code>
+    </pre>
+    <pre> like a mutator...  //can be overloaded (multple versions w/different # of args)
+        <code>
+            Animal.prototype.setOwner = function(newOwner) {
+                if (typeof newOwner != "undefined") {
+                    this.owner = newOwner;
+                } else {
+                    document.write('please enter a valid owner name');
+                }
+            }
+        </code>
+    </pre>
+    <pre> like an accessor...
+        <code>
+            Animal.prototype.getOwner = function() {
+                return this.owner;
+            }
+        </code>
+    </pre>
+    <pre> repeat for sound and name properties...
+        <code>
+            Animal.prototype.setName = function(newName) {
+                if (typeof newName != "undefined") {
+                    this.name = newName;
+                } else {
+                    document.write('please enter a valid name');
+                }
+            }
+       
+            Animal.prototype.getName = function() {
+                return this.name;
+            }   
+        
+            Animal.prototype.setSound = function(newSound) {
+                if (typeof newSound != "undefined") {
+                    this.sound = newSound;
+                } else {
+                    document.write('please enter a valid sound');
+                }
+            }
+        
+            Animal.prototype.getSound = function() {
+                return this.sound;
+            }
+        </code>
+    </pre>
+
+
+
+</body>
+</html>
