@@ -22,12 +22,62 @@
         var wordsArray = ["apple", "bacon", "carrot", "donut", "egg", "fish"];
         var wordsArrayLength = wordsArray.length;
         var randomizer = Math.floor(wordsArrayLength*Math.random());
-        console.log(randomizer);
+        var randomWord = wordsArray[randomizer];
+        var wordLength = randomWord.length
+        var wordDisplayDash = ""
+
+        console.log(randomWord);
+
+        for(var i = 0; i<wordLength; i++) {
+            wordDisplayDash += '-';
+        }
+
+        var currentDisplay = wordDisplayDash.split('');
+        document.getElementById('messageDiv').innerHTML = wordDisplayDash;
 
         document.getElementById('guessButton').onclick = function() {
-            document.getElementById('messageDiv').innerHTML= document.getElementById('inputText').value;
+
+            var currentGuess = document.getElementById('inputText').value;
+            // console.log(currentGuess.length);
+
+            if(currentGuess.length != 1) {
+                console.log("you must type exactly ONE letter for a guess!");
+            } else {
+                var lettersArray = randomWord.split('');
+                var lettersArrayLength = lettersArray.length;
+
+                for(var j=0; j < lettersArrayLength; j++) {
+                    if(lettersArray[j]===currentGuess) {
+                        a = currentDisplay.splice(j, 1, currentGuess);
+                        console.log(currentDisplay)
+                    } else {             
+                        continue;
+                    }
+                    console.log("loop index number " + j)
+                }
+
+            }
+
+
+            document.getElementById('messageDiv').innerHTML= currentDisplay.join('');
         }
 
     </script>
 </body>
 </html>
+<!-- 
+["a", "p", "p", "l", "e"]
+a.splice(1, 2)
+["p", "p"]
+a
+["a", "l", "e"]
+a.splice(1, 0, "p", "p");
+[]
+a
+["a", "p", "p", "l", "e"]
+a
+["a", "p", "p", "l", "e"]
+a.splice(3, 1, "s");
+["l"]
+a
+["a", "p", "p", "s", "e"] -->
