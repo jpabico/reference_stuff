@@ -1,3 +1,4 @@
+<!-- completed, not refactored -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +38,7 @@
         var deathPic = "";
         var wrongGuess = true;
         var numCorrect = 0;
+        var lettersGuessedArray = [];
 
         console.log(randomWord);
 
@@ -63,10 +65,11 @@
                         a = currentDisplay.splice(j, 1, currentGuess);
                         numCorrect +=1;
                         wrongGuess = false;
-                    } 
+                    }
                     document.getElementById('inputText').value='';
                 }
 
+                lettersGuessedArray.push(currentGuess);
             }
 
             if(wrongGuess) {
@@ -102,7 +105,7 @@
                     endGame();
                 }
             }
-            
+
             wrongGuess = true;
         }
     }
