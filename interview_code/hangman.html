@@ -18,9 +18,14 @@
     <div id='messageDiv'></div>
     <!-- javascript -->
     <script type="text/javascript">
+
+        var wordsArray = ["apple", "bacon", "carrot", "donut", "egg", "fish"];
+        var wordsArrayLength = wordsArray.length;
+        var randomizer = Math.floor(wordsArrayLength*Math.random());
+        console.log(randomizer);
+
         document.getElementById('guessButton').onclick = function() {
             document.getElementById('messageDiv').innerHTML= document.getElementById('inputText').value;
-            // alert("hi");
         }
 
     </script>
