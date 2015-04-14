@@ -84,8 +84,39 @@
             }
         </code>
     </pre>
+    <pre> create a new animal...
+        <code>
+            var dog = new Animal();
+            dog.setName("spot");
+            dog.setSound();
 
+            document.write(dog.getName());  //"spot"
+            document.write(dog.getSound());  // "grrr" because newSound was undefined
+        </code>
+    </pre>
+    <pre> add new method to Animal (extending object)...
+        <code>
+            Animal.prototype.english = function() {
+                alert('sorry, I do not speak English');
+            }
+        </code>
+    </pre>
+    <pre> now objects defined from here on out will have inherited property of .english()...
+        <code>
+            var cat = new Animal();
+            cat.english   //shows method .english as an expression   
+            cat.english()   // invokes function and alert box pops up 'sorry, I do not speak English'
+        </code>
+    </pre>
+    <pre> create new Pet class that inherits from Animal...
+        <code>
+            function Pet() {
+                this.home="inside house"
+            }
 
-
+            Pet.prototype = new Animal();
+        </code>
+    </pre>
+    <p> new properties/methods can be added to Pet.prototype independent of Animal</p>
 </body>
 </html>
