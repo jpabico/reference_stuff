@@ -9,6 +9,11 @@
             border: 1px solid blue;
             height: 30px;
         }
+
+        #deathDiv {
+            border: 1px solid red;
+            height: 30px;
+        }
     </style>
 
 </head>
@@ -16,6 +21,7 @@
     <input type="text" id='inputText'>
     <button type='submit' id='guessButton'>Lock in your guess!</button>
     <div id='messageDiv'></div>
+    <div id='deathDiv'></div>
     <!-- javascript -->
     <script type="text/javascript">
 
@@ -24,7 +30,9 @@
         var randomizer = Math.floor(wordsArrayLength*Math.random());
         var randomWord = wordsArray[randomizer];
         var wordLength = randomWord.length
-        var wordDisplayDash = ""
+        var wordDisplayDash = "";
+        var numWrong = 0;
+        var deathPic = "";
 
         console.log(randomWord);
 
@@ -50,34 +58,22 @@
                     if(lettersArray[j]===currentGuess) {
                         a = currentDisplay.splice(j, 1, currentGuess);
                         console.log(currentDisplay)
-                    } else {             
-                        continue;
+                    } else { 
+                        if (j==lettersArrayLength - 1) {         
+                            numWrong +=1;
+                            deathPic += "X";
+                        }
                     }
-                    console.log("loop index number " + j)
+                    document.getElementById('inputText').value='';
                 }
 
             }
 
 
             document.getElementById('messageDiv').innerHTML= currentDisplay.join('');
+            document.getElementById('deathDiv').innerHTML = deathPic;
         }
 
     </script>
 </body>
 </html>
-<!-- 
-["a", "p", "p", "l", "e"]
-a.splice(1, 2)
-["p", "p"]
-a
-["a", "l", "e"]
-a.splice(1, 0, "p", "p");
-[]
-a
-["a", "p", "p", "l", "e"]
-a
-["a", "p", "p", "l", "e"]
-a.splice(3, 1, "s");
-["l"]
-a
-["a", "p", "p", "s", "e"] -->
