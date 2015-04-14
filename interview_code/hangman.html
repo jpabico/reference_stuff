@@ -24,6 +24,7 @@
     <div id='deathDiv'></div>
     <!-- javascript -->
     <script type="text/javascript">
+    playGame();
     function playGame() {
         var wordsArray = ["apple", "bacon", "carrot", "donut", "egg", "fish"];
         var wordsArrayLength = wordsArray.length;
@@ -91,7 +92,17 @@
             }
             if (numWrong==9) {
                 document.getElementById('messageDiv').innerHTML = currentDisplay.join('') + " -----Sorry, you are out of guesses.  You have died!-----";
+                var playAgain = prompt('Play again? ("y" or "n")');
+                if (playAgain == "y") {
+                    document.getElementById('deathDiv').innerHTML = "";
+                    playGame();
+                } else if (playAgain == "n") {
+                    endGame();
+                } else {
+                    endGame();
+                }
             }
+            
             wrongGuess = true;
         }
     }
@@ -99,9 +110,11 @@
     function endGame() {
         document.getElementById('messageDiv').innerHTML = "Thanks for playing!"
         document.getElementById('deathDiv').innerHTML = "";
+        document.getElementById('guessButton').onclick = function() {
+                document.getElementById('deathDiv').innerHTML = "---refresh page to play again---";
+        }
     }
 
-    playGame();
 
     </script>
 </body>
