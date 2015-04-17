@@ -4,31 +4,38 @@
     <title>Rainbow Challenge</title>
     <style type="text/css">
 
-    #main {
-        height: 100px;
-        width: 100px;
-        border: 1px black solid;
-    }
-
+        #main {
+            height: 100px;
+            width: 100px;
+            border: 1px black solid;
+        }
 
     </style>
 
 </head>
 <body>
+
     <div id="main">Main Div</div>
     <button id="button">Rainbow Time!</button>
 
 </body>
-<script type="text/javascript"></script>
 <script type="text/javascript">
 
     var rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-
+    var counter = 0;
+    
     document.getElementById('button').onclick = function() {
-        document.getElementById('main').style.background = rainbow[3];
+        document.getElementById('main').style.background = rainbow[counter];
+        if(counter >= rainbow.length - 1) {
+            counter = 0;
+        } else {
+            counter++;
+        }
+
     }
 
 </script>
 </html>
 
 
+<!-- setInterval(function(){ alert("Hello"); }, 3000); -->
