@@ -163,25 +163,25 @@ function deduplicate(inputArray) {
 
         // check if element of inputArray is an array 
         if (Object.prototype.toString.call( inputArray[i] ) === '[object Array]') {
-            console.log("array - index is " + i);
+            // console.log("array - index is " + i);
         }
 
         // check if element of inputArray is an object
         if (typeof(inputArray[i])==="object" && Object.prototype.toString.call( inputArray[i] ) !== '[object Array]') {
-            console.log("object - index is " + i);
-            console.log(Object.keys(inputArray[i]));
+            // console.log("object - index is " + i);
+            // console.log(Object.keys(inputArray[i]));
         }
 
         // check to see if element from inputArray is already in returnArray
         var aa = findInsideArray(returnArray, inputArray[i]);
-        console.log(aa);
-        console.log("============");
+        // console.log(aa);
+        // console.log("============");
         if(aa) {
             continue;
         } else {
             returnArray.push(inputArray[i]);
-            console.log(i);
-            console.log("that was the index");
+            // console.log(i);
+            // console.log("that was the index");
         } 
     }
 
@@ -191,7 +191,7 @@ function deduplicate(inputArray) {
 function findInsideArray(searchArray, target) {
     for(var i = 0; i < searchArray.length; i++) {
         if(String(searchArray[i])==String(target)) {
-            console.log("matched!");
+            // console.log("matched!");
             return true;
         }
     }
@@ -206,3 +206,10 @@ console.log(deduplicate(a));   // should be [1, 2, 5, 7, 3, 9]
 console.log(deduplicate(b));   // should be [1, '1', 2, 0, false, true]
 console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
 console.log(deduplicate(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b']
+
+// preprocess objects
+// get keys of objects Object.keys(input_object)
+// sort keys
+// emptyArray.push([key_1, input_object[key_1])  (iterate by keys_array.length)
+// stringify
+// compare strings
