@@ -156,15 +156,15 @@
 
 function deduplicate(inputArray) {
 
+    // modified arrays are for comparison purposes only
     var modifiedInputArray = [];
-    var returnArray = [];
     var modifiedReturnArray = [];
+    var returnArray = [];
     
     // iterate through inputArray
     for(var i = 0; i < inputArray.length ; i++) {
 
-        // check if element of inputArray is an array 
-        // check if element of inputArray is an object
+        // check if element of inputArray is an array  or object
         if (Object.prototype.toString.call( inputArray[i] ) === '[object Array]') {
             // console.log("array - index is " + i);
             modifiedInputArray.push(String(inputArray[i]));
@@ -184,27 +184,12 @@ function deduplicate(inputArray) {
             modifiedInputArray.push(inputArray[i]);
         }
 
-        if(modifiedReturnArray.indexOf(modifiedInputArray[i]) < 0) {
+        // check to see if element from modifiedInputArray is already in modifiedReturnArray
+        if (modifiedReturnArray.indexOf(modifiedInputArray[i]) < 0) {
             returnArray.push(inputArray[i]);
             modifiedReturnArray.push(modifiedInputArray[i]);
         }
-
-        // // check to see if element from inputArray is already in returnArray
-        // var aa = findInsideArray(returnArray, inputArray[i]);
-        // // console.log(aa);
-        // // console.log("============");
-        // if(aa) {
-        //     continue;
-        // } else {
-        //     returnArray.push(inputArray[i]);
-        //     // console.log(i);
-        //     // console.log("that was the index");
-        // } 
-
-
-
     }
-    
     return returnArray;
 }
 
