@@ -169,18 +169,18 @@ function deduplicate(inputArray) {
             // console.log("array - index is " + i);
             modifiedInputArray.push(String(inputArray[i]));
         } else if (typeof(inputArray[i])==="object" && Object.prototype.toString.call( inputArray[i] ) !== '[object Array]') {
-            var objectKeysArray = Object.keys(inputArray[i]);
-            var sortedKeys = objectKeysArray.sort();
-            var preStringifiedObject = {};
+            
+
+            var objectKeys = Object.keys(inputArray[i]);
+            var sortedKeys = objectKeys.sort();
+            var preStringObject = {};
             for(var k = 0; k < sortedKeys.length; k++) {
-                var keykey = sortedKeys[k];
-                preStringifiedObject[k] = [keykey, inputArray[i][keykey]];
-
-            // console.log(preStringifiedObject);
-
+                preStringObject[sortedKeys[k]] = [sortedKeys[k], inputArray[i][sortedKeys[k]]];
+                console.log(preStringObject);
             }
-            var stringifiedObject = String(preStringifiedObject);
-            modifiedInputArray.push(stringifiedObject);
+            var stringObject = JSON.stringify(preStringObject);
+            // console.log(stringObject);
+            modifiedInputArray.push(stringObject);
         } else {
             modifiedInputArray.push(inputArray[i]);
         }
@@ -199,9 +199,9 @@ b = [1, '1', 2, 0, false, true];
 c = [8, 3, [1, 2], [1, 2, 3], [1, 2], [2, 1], true];   // array at index 4 should not be present in results
 d = [1, {a: 'b', c: 'd'}, {c: 'd', a: 'b'}, {e: 'f'}, 'b'];   // object at index 2 should not be present in results
 
-// console.log(deduplicate(a));   // should be [1, 2, 5, 7, 3, 9]
-// console.log(deduplicate(b));   // should be [1, '1', 2, 0, false, true]
-// console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
+console.log(deduplicate(a));   // should be [1, 2, 5, 7, 3, 9]
+console.log(deduplicate(b));   // should be [1, '1', 2, 0, false, true]
+console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
 console.log(deduplicate(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b']
 
 // preprocess objects
@@ -228,23 +228,13 @@ var aPrestring = {};
 var bPrestring = {};
 for(var i=0; i < 2; i++) {
 
-    aPrestring[i] = [aKeys[i], a[aKeys[i]]];
-    bPrestring[i] = [bKeys[i], b[bKeys[i]]];
+    aPrestring[aKeysSorted[i]] = [aKeysSorted[i], a[aKeysSorted[i]]];
+    bPrestring[bKeysSorted[i]] = [bKeysSorted[i], b[bKeysSorted[i]]];
+   // bPrestring[i] = [bKeys[i], b[bKeys[i]]];
 }
 console.log(aPrestring);
 console.log(bPrestring);
 aPrestring==bPrestring;  //false ...they are PRE string
-String(aPrestring)==String(bPrestring);
+// String(aPrestring)==String(bPrestring);
 
 
-var objectKeysArray = Object.keys(inputArray[i]);
-            var sortedKeys = objectKeysArray.sort();
-            var preStringifiedObject = {};
-            for(var k = 0; k < sortedKeys.length; k++) {
-                preStringifiedObject[k] = [k, inputArray[i][k]];
-
-            // console.log(preStringifiedObject);
-
-            }
-            var stringifiedObject = String(preStringifiedObject);
-            modifiedInputArray.push(stringifiedObject);
