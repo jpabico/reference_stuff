@@ -208,8 +208,13 @@ console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], tr
 console.log(deduplicate(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b']
 
 // preprocess objects
+// save ORIGINAL object but process reference to object
 // get keys of objects Object.keys(input_object)
 // sort keys
 // emptyArray.push([key_1, input_object[key_1])  (iterate by keys_array.length)
 // stringify
 // compare strings
+
+// push preprocessed string into preprocessedReturnArray AND push original object to returnArray
+// preprocessedReturnArray is always used for comparison
+// if comparison is true, push both types
