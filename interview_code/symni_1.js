@@ -169,14 +169,15 @@ function deduplicate(inputArray) {
             // console.log("array - index is " + i);
             modifiedInputArray.push(String(inputArray[i]));
         } else if (typeof(inputArray[i])==="object" && Object.prototype.toString.call( inputArray[i] ) !== '[object Array]') {
-            // console.log("object - index is " + i);
-            // console.log(Object.keys(inputArray[i]));
             var objectKeysArray = Object.keys(inputArray[i]);
             var sortedKeys = objectKeysArray.sort();
             var preStringifiedObject = {};
             for(var k = 0; k < sortedKeys.length; k++) {
-                preStringifiedObject[k] = [k, inputArray[i][k]];
-                // console.log(preStringifiedObject);
+                var keykey = sortedKeys[k];
+                preStringifiedObject[k] = [keykey, inputArray[i][keykey]];
+
+            // console.log(preStringifiedObject);
+
             }
             var stringifiedObject = String(preStringifiedObject);
             modifiedInputArray.push(stringifiedObject);
@@ -198,9 +199,9 @@ b = [1, '1', 2, 0, false, true];
 c = [8, 3, [1, 2], [1, 2, 3], [1, 2], [2, 1], true];   // array at index 4 should not be present in results
 d = [1, {a: 'b', c: 'd'}, {c: 'd', a: 'b'}, {e: 'f'}, 'b'];   // object at index 2 should not be present in results
 
-console.log(deduplicate(a));   // should be [1, 2, 5, 7, 3, 9]
-console.log(deduplicate(b));   // should be [1, '1', 2, 0, false, true]
-console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
+// console.log(deduplicate(a));   // should be [1, 2, 5, 7, 3, 9]
+// console.log(deduplicate(b));   // should be [1, '1', 2, 0, false, true]
+// console.log(deduplicate(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
 console.log(deduplicate(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b']
 
 // preprocess objects
@@ -214,3 +215,36 @@ console.log(deduplicate(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b'
 // push preprocessed string into preprocessedReturnArray AND push original object to returnArray
 // preprocessedReturnArray is always used for comparison
 // if comparison is true, push both types
+
+
+
+a = {'x':'y', 'h':'i'};
+b = {'h':'i', 'x':'y'};
+var aKeys = Object.keys(a);
+var bKeys = Object.keys(b);
+var aKeysSorted = aKeys.sort();
+var bKeysSorted = bKeys.sort();
+var aPrestring = {};
+var bPrestring = {};
+for(var i=0; i < 2; i++) {
+
+    aPrestring[i] = [aKeys[i], a[aKeys[i]]];
+    bPrestring[i] = [bKeys[i], b[bKeys[i]]];
+}
+console.log(aPrestring);
+console.log(bPrestring);
+aPrestring==bPrestring;  //false ...they are PRE string
+String(aPrestring)==String(bPrestring);
+
+
+var objectKeysArray = Object.keys(inputArray[i]);
+            var sortedKeys = objectKeysArray.sort();
+            var preStringifiedObject = {};
+            for(var k = 0; k < sortedKeys.length; k++) {
+                preStringifiedObject[k] = [k, inputArray[i][k]];
+
+            // console.log(preStringifiedObject);
+
+            }
+            var stringifiedObject = String(preStringifiedObject);
+            modifiedInputArray.push(stringifiedObject);
