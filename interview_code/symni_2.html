@@ -3,13 +3,11 @@
 <head>
     <title>Rainbow Challenge</title>
     <style type="text/css">
-
         #main {
             height: 100px;
             width: 100px;
-            border: 1px black solid;
+            background: red;
         }
-
     </style>
 
 </head>
@@ -22,18 +20,46 @@
 <script type="text/javascript">
 
     var rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-    var counter = 0;
-    
-    document.getElementById('button').onclick = function() {
+    var counter = 1;
+
+    // document.getElementById('button').onclick = function() {
+    //     if(counter >= rainbow.length - 1) {
+    //         counter = 0;
+    //     } else {
+    //         counter++;
+    //     }
+
+    // }
+
+    // var myFunction = document.getElementById('button').onclick;
+
+
+document.getElementById("button").addEventListener("click", throttle(myFunctionCounter, 2000));
+
+
+function myFunctionCounter () {
         document.getElementById('main').style.background = rainbow[counter];
-        if(counter >= rainbow.length - 1) {
-            counter = 0;
-        } else {
-            counter++;
+    if(counter >= rainbow.length - 1) {
+             counter = 0;
+         } else {
+             counter++;
+         }
+}
+ 
+// window.addEventListener("resize", throttle( callback, 200 ));
+
+function throttle (callback, limit) {
+    var wait = false;                 // Initially, we're not waiting
+    return function () {              // We return a throttled function
+        if (!wait) {                  // If we're not waiting
+            myFunctionCounter.call();          // Execute users function
+            wait = true;              // Prevent future invocations
+            setTimeout(function () {  // After a period of time
+                wait = false;         // And allow future invocations
+            }, limit);
         }
-
     }
-
+}
 </script>
 </html>
 
