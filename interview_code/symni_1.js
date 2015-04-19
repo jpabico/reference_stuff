@@ -46,10 +46,12 @@ function dedup(inputArray) {
 
 a = [1, 2, 2, 5, 2, 7, 3, 9, 1, 9];
 b = [1, '1', 2, 0, false, true];
-c = [8, 3, [1, 2], [1, 2, 3], [1, 2], [2, 1], true];   // array at index 4 should not be present in results
-d = [1, {a: 'b', c: 'd'}, {c: 'd', a: 'b'}, {e: 'f'}, 'b'];   // object at index 2 should not be present in results
+c = [8, 3, [1, 2], [1, 2, 3], [1, 2], [2, 1], true];   
+d = [1, {a: 'b', c: 'd'}, {c: 'd', a: 'b'}, {e: 'f'}, 'b'];  
 
 console.log(dedup(a));   // should be [1, 2, 5, 7, 3, 9]
 console.log(dedup(b));   // should be [1, '1', 2, 0, false, true]
 console.log(dedup(c));   // should be [8, 3, [1, 2], [1, 2, 3], [2, 1], true]
 console.log(dedup(d));   // should be [1, {a: 'b', c: 'd'} , {e: 'f'}, 'b']
+
+// checked and refactored  
