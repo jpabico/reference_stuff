@@ -17,3 +17,55 @@
 # push(item) #add
 # is_empty?
 
+
+class Kyoo
+
+    def initialize
+        @queue = []
+    end
+
+    def first
+        @last_index = @queue.length  - 1
+        return @queue[@last_index]
+    end
+
+    def last
+        @first_index = 0
+        return @queue[@first_index]
+    end
+
+    def enqueue(item)
+        @queue.unshift(item)
+    end
+
+    def dequeue
+        @queue.pop
+    end
+
+    def display
+        p @queue
+    end
+        
+    end
+
+    
+end
+
+class Staakk
+
+    def initialize
+        @queue1 = Queue.new
+        @queue2 = Queue.new
+    end
+
+end
+
+a = Kyoo.new
+a.enqueue('a')
+a.enqueue('b')
+a.enqueue('c')
+a.first
+a.last
+a.dequeue
+a.display
+a.dequeue
