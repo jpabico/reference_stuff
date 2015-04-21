@@ -63,14 +63,17 @@ class Staakk
     end
 
     def add(item)
-        if @queue1.length==0
-            @queue2.unshift(item)
+        if @queue1.is_empty?
+            @queue2.enqueue(item)
         else
-            @queue1.unshift(item)
+            @queue1.enqueue(item)
         end
     end
 
     def remove
+        if !@queue1.is_empty?
+        else
+        end
 
     end
 
