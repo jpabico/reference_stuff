@@ -58,8 +58,12 @@ end
 class Staakk
 
     def initialize
-        @queue1 = Queue.new
-        @queue2 = Queue.new
+        @queue1 = Kyoo.new
+        @queue2 = Kyoo.new
+    end
+
+    def display
+        self.inspect
     end
 
 end
@@ -76,3 +80,5 @@ a.dequeue
 a.is_empty?
 a.dequeue
 a.is_empty?
+b = Staakk.new
+b.display
