@@ -62,8 +62,24 @@ class Staakk
         @queue2 = Kyoo.new
     end
 
-    def display
-        self.inspect
+    def add(item)
+        if @queue1.length==0
+            @queue2.unshift(item)
+        else
+            @queue1.unshift(item)
+        end
+    end
+
+    def remove
+
+    end
+
+    def is_empty?
+        if @queue1.length == 0 && @queue2.length == 0
+            return true
+        else
+            return false
+        end
     end
 
 end
