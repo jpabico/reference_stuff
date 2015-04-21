@@ -42,8 +42,12 @@ class Kyoo
         @queue.pop
     end
 
-    def display
-        p @queue
+    def is_empty?
+        if @queue.length ==0
+            return true
+        else
+            return false
+        end
     end
         
     end
@@ -69,3 +73,6 @@ a.last
 a.dequeue
 a.display
 a.dequeue
+a.is_empty?
+a.dequeue
+a.is_empty?
