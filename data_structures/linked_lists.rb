@@ -24,4 +24,15 @@ class Linklist
         self
     end
 
+    def display
+        current = @head
+        full_list = []
+        while current.next_node !=nil
+            full_list += [current.value.to_s]
+            current = current.next_node
+        end
+        full_list += [current.value.to_s]
+        puts full_list.join('->')
+    end
+
 end
