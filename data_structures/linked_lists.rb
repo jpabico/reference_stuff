@@ -24,6 +24,9 @@ class Linklist
         self
     end
 
+    def delete
+    end
+
     def display
         current = @head
         full_list = []
@@ -35,4 +38,35 @@ class Linklist
         puts full_list.join('->')
     end
 
+    # before/after methods for a specific node
+    def insert_before(reference_node, inserted_node)
+    end
+
+    def insert_after(reference_node, inserted_node)
+    end
+
+    # before/after methods for a specific node
+    def remove_before(reference_node, node_to_remove)
+    end
+
+    def remove_after(reference_node, node_to_remove)
+    end
+
+
 end
+
+p list1 = Linklist.new('a')
+list1.display
+list1.add('b')
+list1.display    # a->b
+list1.add('c')
+list1.display   # a->b->c
+
+# consider using a sentinel to make scouting pointers easier
+# method for copying list (used before sorting)
+# method for sorting list using insertion sort
+# method for sorting list using selection sort 
+# circular linked list 
+# mark each cell visited - needs another attribute...easier to add visited cells to a hash table
+# check hash table - if present, then it has been visited
+# reverse linked list - use remove after method to build a new list 
