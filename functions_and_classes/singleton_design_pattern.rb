@@ -1,3 +1,5 @@
+# simple logger example
+
 require "singleton"
 
 class SimpleLogger
