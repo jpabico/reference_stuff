@@ -18,13 +18,16 @@ class SimpleLogger
     end
 
     def write(filename)
-        File.open(filename, "w") {|f| v << output.join("\n")}
+        File.open(filename, "w") {|f| vf<< output.join("\n")}
     end
 
     private
 
-    def formatted_message(message, mesage_type)
+    def formatted_message(message, message_type)
         "#{Time.now} | #{message_type}: #{message}"
     end
 
 end
+
+logger = SimpleLogger.instance
+logger.error("some serious problem")
