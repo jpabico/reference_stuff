@@ -3,6 +3,7 @@ b = 'this one\'s got an escaped character'
 c = "hey"
 d = "dude"
 e = " middle "
+
 x, y, z = 12, 24, 48
 
 puts "the value of x is #{x}"
@@ -13,6 +14,7 @@ puts "the average of x, y, and z is #{ (x+y+z)/3}"
 
 # common methods
 a.downcase  # "this is a sample string with caps and all?"
+a.upcase 
 c * 4   # "heyheyheyhey"
 c + d   # "heydude"
 c << d   # "heydude"
@@ -36,3 +38,6 @@ e.strip  # removes leading/trailing whitespace
 # lstrip and rstrip are used for one or the other only
 b.slice(3, 1)   # same as javascript's splice method 
 e.split('')  # [" ", "m", "i", "d", "d", "l", "e", " "]
+a.swapcase   # uppercase to lower and vice versa
+x.to_s.to_f   #floating point number
+x.to_s.to_i   # integer
