@@ -24,18 +24,12 @@
 </head>
 <body>
     <h1>Regular Expressions</h1>
-    <p>Some basics about regular expressions (courtesy of <a href='http://regexone.com/lesson/'>http://regexone.com/lesson/</a>)...</p>
-    <ul>
-        <li>\d (any digit)</li>
-        <li>the dot  .   is a wildcard (any single character)</li>
-        <li>escaped dot \. (an actual period)</li>
-        <li>[abc] (match only a single letter a, b or c...nothing else)</li>
-        <li>[^abc] (excludes a single letter a, b, or c)</li>
-        <li></li>
-        <li></li>
-    </ul>
-
+    <p>(courtesy of <a href='http://regexone.com/lesson/'>http://regexone.com/lesson/</a>)...</p>
     <table>
+        <tr>
+            <th></th>
+            <th>BASICS</th>
+        </tr>
         <tr>
             <th>expression</th>
             <th>meaning</th>
@@ -60,6 +54,78 @@
             <td>[^abc]</td>
             <td>excludes a single letter a, b, or c</td>
         </tr>   
+        <tr>
+            <td>[2-7]</td>
+            <td>any digit from 2 to 7</td>
+        </tr>   
+        <tr>
+            <td>[^f-n]</td>
+            <td>any letter except those from f to n</td>
+        </tr>
+        <tr>
+            <td>ab?c</td>
+            <td>character b is optional (both "ac" and "abc" will match)</td>
+        </tr>   
+        <tr>
+            <td>\s</td>
+            <td>any whitespace</td>
+        </tr>
+        <tr>
+            <th></th>
+            <th>REPETITIONS</th>
+        </tr>
+        <tr>
+            <td>w{3}</td>
+            <td>match the character w exactly 3 times</td>
+        </tr>   
+        <tr>
+            <td>r{1, 3}</td>
+            <td>match the character r at least once but no more than 3 times</td>
+        </tr>   
+        <tr>
+            <td>\d*</td>
+            <td>zero or more digits</td>
+        </tr>   
+        <tr>
+            <td>\d+</td>
+            <td>1 or more digits</td>
+        </tr>   
+        <tr>
+            <td>g+</td>
+            <td>one or more of the character g</td>
+        </tr>   
+        <tr>
+            <td>[abc]+</td>
+            <td>one or more of any a, b, or c character</td>
+        </tr>
+        <tr>
+            <th></th>
+            <th>OTHER IMPORTANT STUFF</th>
+        </tr> 
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
         <tr>
             <td></td>
             <td></td>
