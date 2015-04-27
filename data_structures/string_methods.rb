@@ -2,6 +2,7 @@ a = "This is a Sample string with CAPS and all?"
 b = 'this one\'s got an escaped character'
 c = "hey"
 d = "dude"
+e = "    middle "
 x, y, z = 12, 24, 48
 
 puts "the value of x is #{x}"
@@ -29,3 +30,7 @@ a.include?("x")
 a.insert(3, "zzzzzzzz")   # "Thizzzzzzzzs is a Sample string with CAPS and all?"
 c.to_sym
 b.length
+#  for regular expressions  => a.match(pattern), a.scan(pattern) {|match| block}
+b.reverse
+e.strip  # removes leading/trailing whitespace
+b.slice(3, 1)   # same as javascript's splice method 
