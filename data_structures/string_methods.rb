@@ -21,3 +21,11 @@ b.capitalize
 a.chomp   # removes \n from the end of a string
 d.chop   # "dud"
 b.count("c")   # 3... because there are 3 c's
+a.delete("a")   # "This is  Smple string with CAPS nd ll?"
+a.empty?
+a.eql?(b)
+a.gsub("i", "iii")   # pattern can be regex
+a.include?("x")
+a.insert(3, "zzzzzzzz")   # "Thizzzzzzzzs is a Sample string with CAPS and all?"
+c.to_sym
+b.length
