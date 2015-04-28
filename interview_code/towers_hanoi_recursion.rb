@@ -1,18 +1,24 @@
 # from rosetta code
 
 def move(num_disks, start=0, target=1, using=2)
+
+  # if there's one disk left, move it and move back up stack
   if num_disks == 1
    @towers[target] << @towers[start].pop
     puts "Move disk from #{start} to #{target} : #{@towers}"
+
+  # otherwise call function recursively and move down stack
   else
+    # switch using/target so that disk moves to a different peg  
     move(num_disks-1, start, using, target)
-    move(1,           start, target, using)
+    move(1, start, target, using)
     move(num_disks-1, using, target, start)
   end 
 end
  
 n = 5
-@towers = [[*1..n].reverse, [], []]
+disks_array = [*1..n].reverse   #=> [5, 4, 3, 2, 1]
+@towers = [disks_array, [], []]
 move(n)
 
 # output
