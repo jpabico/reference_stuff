@@ -9,9 +9,14 @@ def move(num_disks, start=0, target=1, using=2)
 
   # otherwise call function recursively and move down stack
   else
-    # switch using/target so that disk moves to a different peg  
+
+    # move top n-1 disks from first peg to last peg
     move(num_disks-1, start, using, target)
+
+    # move 1 disk from the first peg to middle peg
     move(1, start, target, using)
+
+    # move top n-1 disks from last peg to middle peg
     move(num_disks-1, using, target, start)
   end 
 end
