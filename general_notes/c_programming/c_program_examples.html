@@ -2,9 +2,15 @@
 <html>
 <head>
     <title>C Programming  Examples</title>
+    <style type="text/css">
+        body {
+            margin-left: 50px;
+        }
+    </style>
 </head>
 <body>
     <h1>C Programming Examples</h1>
+
     <h2>Hello World</h2>
     <pre>
 #include &ltstdio.h&gt
@@ -19,7 +25,7 @@ OR
 #include &ltstdio.h&gt
 
 void main(void) {
-    printf(“Hello world!\n”);
+    printf("Hello world!\n");
 }
     </pre>
 
@@ -40,6 +46,7 @@ int main()
   return 0;
 }
     </pre>
+
     <h2>If Statements</h2>
     <pre>
 
@@ -47,17 +54,17 @@ int main()
  
 void main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf(“You need to enter at least 1 parameter\n”);
+        printf("You need to enter at least 1 parameter\n");
     } else if (argc < 4) {
-        printf(“Everything is OK.\n”);
+        printf("Everything is OK.\n");
     } else {
-        printf(“You entered too many parameters.\n”);
+        printf("You entered too many parameters.\n");
     }
 }
     </pre>
+
     <h2>Odd or Even</h2>
     <pre>
-
 #include &ltstdio.h&gt
 
 int main()
@@ -75,6 +82,7 @@ int main()
    return 0;
 }
     </pre>
+
     <h2>For Loops</h2>
     <pre>
 #include &ltstdio.h&gt
@@ -82,11 +90,32 @@ int main()
 void main(int argc, char *argv[]) {
     int i;
     for (i=0; i < argc; i=i+1) {
-        printf(“Argument %d is %s\n”, i, argv[i]);
+        printf("Argument %d is %s\n", i, argv[i]);
+    }
+}
+    </pre>
+
+    <h2>While Loops</h2>
+    <pre>
+#include &ltstdio.h&gt
+
+void main(int argc, char *argv[]) {
+    int i;
+    i=0; // INITIALIZE
+    while (i < argc) {
+        printf("Argument %d is %s\n", i, argv[i]);
+        i = i+1; // ITERATE
     }
 }
     </pre>
     
-    <h2></h2>
+    <h2>Useful Loop Statements</h2>
+    <ul>
+        <li>Break - used to prematurely terminate a loop</li>
+        <li>Continue - proceeds to the next iteration of a loop, skipping the remaining statements</li>
+        <li>Return - used to immediately exit from a function and return to the function's caller</li>
+    </ul>
+
+
 </body>
 </html>
