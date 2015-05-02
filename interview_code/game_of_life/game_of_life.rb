@@ -9,7 +9,6 @@
 # any dead cell with exactly 3 live neighbors will become alive (reproduction)
 
 class World
-
     attr_accessor :rows, :cols, :cell_grid
     def initialize(rows=3, cols=3)
         @rows = rows
@@ -22,25 +21,23 @@ class World
         end
 
     end
-
 end
-        
-    # def rows
-    # end
-
-    # def cols
-    # end
-
-
-
+   
 class Cell
     attr_accessor :alive, :x, :y
     def initialize(x=0, y=0)
         @alive = false
         @x = x
         @y = y
-
     end
 end
 
-
+# tie together World and Cell classes
+# ex: Game(world, cells)
+class Game
+    attr_accessor :world, :seeds
+    def initialize(world=World.new, seeds=[])
+        @world = world
+        @seeds = seeds
+    end
+end
