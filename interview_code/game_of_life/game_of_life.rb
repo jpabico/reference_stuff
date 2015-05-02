@@ -17,7 +17,7 @@ class World
 
         @cell_grid = Array.new(rows) do |row|
             Array.new(cols) do |col|
-                Cell.new
+                Cell.new(col, row)
             end
         end
 
