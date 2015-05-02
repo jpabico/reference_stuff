@@ -108,7 +108,7 @@ void main(int argc, char *argv[]) {
     }
 }
     </pre>
-    
+
     <h2>Useful Loop Statements</h2>
     <ul>
         <li>Break - used to prematurely terminate a loop</li>
@@ -116,6 +116,49 @@ void main(int argc, char *argv[]) {
         <li>Return - used to immediately exit from a function and return to the function's caller</li>
     </ul>
 
+    <h2>Function Examples</h2>
+    <pre>
+void countme(void) {
+
+//   STATIC These variables do retain their value for the duration 
+//   of the program. These variables are frequently initialized and used 
+//   either as counters or as flags to indicate whether the initialization 
+//   of some process has occurred.  Had the two variables above not 
+//   been declared static, they would have been initialized to 1and 0, 
+//   respectively, upon every invocation of countme.
+
+    static int firstTime = 1;
+    static int counter = 0;
+    if (firstTime) {
+        firstTime = 0;
+        printf("This is the first time in countme\n");
+    }
+    printf("countme has been called %d times\n", ++counter);
+}
+
+//   this one has an array
+double polyN(double x, double coeffs[], int numCoeffs) {
+    int i;
+    double val = 0.0;
+    for (i=0; i < numCoeffs; i++) {
+        val = val*x + coeffs[i];
+    }
+    return val;
+}
+    </pre>
+
+    <h2>Structures</h2>
+    <pre>
+    struct pixel {
+    int x,y,z;
+    double intensity;
+    double luminance;
+};
+
+//  A structure represents a collection of variables bound together 
+//  under one name. To access the members of this structure, do 
+//  something like: one_pixel.x + one_pixel.y + one_pixel.z
+    </pre>
 
 </body>
 </html>
