@@ -30,6 +30,48 @@ class World
     def  live_neighbors_around_cell(cell)
         live_neighbors = []
 
+# detects neighbors in one of 8 directions
+        # north
+        if cell.y > 0
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # east
+         if cell.x < (cols - 1)
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # south
+         if cell.y < (rows - 1)
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # west
+        if cell.x > 0
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # northeast
+        if cell.y > 0 && cell.x < (cols - 1)
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # northwest
+        if cell.y > 0 && cell.x > 0
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # southeast
+        if cell.y < (rows - 1) && cell.x < (cols - 1)
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+        # southwest
+        if cell.y < (rows - 1) && cell.x > 0
+            candidate = self.cell_grid[cell.y-1][cell.x]
+            live_neighbors << candidate if candidate.alive?
+        end
+
         live_neighbors
     end
 end
