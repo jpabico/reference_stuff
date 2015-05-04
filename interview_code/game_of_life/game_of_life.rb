@@ -21,6 +21,12 @@ class World
         end
     end
 
+# [
+    #  [Cell.new, Cell.new, Cell.new],
+    #  [Cell.new, Cell.new, Cell.new],
+    #  [Cell.new, Cell.new, Cell.new]
+# ]
+
     def  live_neighbors_around_cell(cell)
         live_neighbors = []
 
