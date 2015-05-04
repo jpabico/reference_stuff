@@ -9,10 +9,11 @@
 # any dead cell with exactly 3 live neighbors will become alive (reproduction)
 
 class World
-    attr_accessor :rows, :cols, :cell_grid
+    attr_accessor :rows, :cols, :cell_grid, :cells
     def initialize(rows=3, cols=3)
         @rows = rows
         @cols = cols
+        @cells = []
 
         @cell_grid = Array.new(rows) do |row|
             Array.new(cols) do |col|
@@ -91,6 +92,15 @@ class Cell
     def dead?
         !@alive
     end
+
+    def die!
+        @alive = false
+    end
+
+    def live!
+        @alive = true
+    end
+
 end
 
 # tie together World and Cell classes
@@ -106,7 +116,34 @@ class Game
         @seeds = seeds
 
         seeds.each do |seed|
-            world.cell_grid[seed[0]][seed[1]].alive = true
+            @world.cell_grid[seed[0]][seed[1]].alive = true
         end
     end
+
+    def tick!
+        @world.cells.each do |cell|
+
+            # rule 1
+            if cell.alive? && @world.live_neighbors_around_cell(cell).count < 2
+                cell.die!
+            end
+
+            # rule 2
+            if cell.alive? && @world.live_neighbors_around_cell(cell).count == 2 || @world.live_neighbors_around_cell(cell).count == 3
+                cell.live!
+            end
+
+            # rule 3
+            if cell.alive? && @world.live_neighbors_around_cell(cell).count > 3
+                cell.die!
+            end
+
+            # rule 4
+             if cell.dead? && @world.live_neighbors_around_cell(cell).count == 3
+                cell.live!
+            end
+
+        end
+    end
+
 end
