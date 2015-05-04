@@ -19,7 +19,12 @@ class World
                 Cell.new(col, row)
             end
         end
+    end
 
+    def  live_neighbors_around_cell(cell)
+        live_neighbors = []
+
+        live_neighbors
     end
 end
    
@@ -30,14 +35,30 @@ class Cell
         @x = x
         @y = y
     end
+
+    def alive?
+        @alive
+    end
+
+    def dead?
+        !@alive
+    end
 end
 
 # tie together World and Cell classes
 # ex: Game(world, cells)
 class Game
     attr_accessor :world, :seeds
+
+    # since World already has a set of dead cells with coordinates,
+    # array seeds only needs to specify coordinates and change status
+    # from dead to alive
     def initialize(world=World.new, seeds=[])
         @world = world
         @seeds = seeds
+
+        seeds.each do |seed|
+            world.cell_grid[seed[0]][seed[1]].alive = true
+        end
     end
 end
