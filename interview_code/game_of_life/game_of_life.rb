@@ -121,29 +121,39 @@ class Game
     end
 
     def tick!
-        @world.cells.each do |cell|
+        next_round_live_cells = []
+        next_round_dead_cells = []
 
+        @world.cells.each do |cell|
             # rule 1
             if cell.alive? && @world.live_neighbors_around_cell(cell).count < 2
-                cell.die!
+                next_round_dead_cells << cell
             end
 
             # rule 2
             if cell.alive? && @world.live_neighbors_around_cell(cell).count == 2 || @world.live_neighbors_around_cell(cell).count == 3
-                cell.live!
+                next_round_live_cells << cell
             end
 
             # rule 3
             if cell.alive? && @world.live_neighbors_around_cell(cell).count > 3
-                cell.die!
+                next_round_dead_cells << cell
             end
 
             # rule 4
              if cell.dead? && @world.live_neighbors_around_cell(cell).count == 3
+                next_round_live_cells << cell
+            end
+        end
+
+            next_round_live_cells.each do |cell|
                 cell.live!
             end
+            
+            next_round_dead_cells.each do |cell|
+                cell.die!
+            end
 
-        end
     end
 
 end
