@@ -8,4 +8,20 @@
 # call roll method on each die 
 # write a sum method to find the total
 
+class Die
+    def intialize(num_sides=6)
+        @num_sides = num_sides
+        @actual_die = Array.new(6)
+        populate_die(@num_sides, @actual_die)
+    end
+
+    private
+
+    def populate_die(input_sides, input_die)
+        for i in 1..input_sides
+            input_die << i
+        end
+        input_die
+    end
+end
 
