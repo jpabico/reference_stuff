@@ -9,19 +9,26 @@
 # write a sum method to find the total
 
 class Die
-    def intialize(num_sides=6)
+    attr_accessor :num_sides, :actual_die, :current_val
+    def initialize(num_sides = 6)
         @num_sides = num_sides
         @actual_die = Array.new(6)
         populate_die(@num_sides, @actual_die)
+        @current_val = 1
     end
 
     private
 
     def populate_die(input_sides, input_die)
+
         for i in 1..input_sides
-            input_die << i
+            input_die[i-1] = i
         end
         input_die
     end
 end
 
+a = Die.new(6)
+p a.num_sides
+p a.actual_die
+p a.current_val
