@@ -32,17 +32,15 @@ class Die
     end
 end
 
+def dice_sum(*die_value)
+    sum = 0
+    die_value.each do |i|
+        puts "die value is #{i}"
+        sum +=i 
+    end
+    return sum
+end
+
 a = Die.new(6)
-p a.num_sides
-p a.actual_die
-p a.current_val
-p a.roll
-p a.current_val
-p a.roll
-p a.current_val
-p a.roll
-p a.current_val
-p a.roll
-p a.current_val
-p a.roll
-p a.current_val
+b = Die.new(6)
+p dice_sum(a.roll, b.roll)
