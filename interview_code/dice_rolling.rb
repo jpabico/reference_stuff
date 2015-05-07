@@ -17,6 +17,10 @@ class Die
         @current_val = 1
     end
 
+    def roll
+        @current_val = @actual_die.sample
+    end
+
     private
 
     def populate_die(input_sides, input_die)
@@ -31,4 +35,14 @@ end
 a = Die.new(6)
 p a.num_sides
 p a.actual_die
+p a.current_val
+p a.roll
+p a.current_val
+p a.roll
+p a.current_val
+p a.roll
+p a.current_val
+p a.roll
+p a.current_val
+p a.roll
 p a.current_val
