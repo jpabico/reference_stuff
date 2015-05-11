@@ -1,0 +1,62 @@
+<style>
+
+    body {
+        font-family: Helvetica Neue, Arial, sans-serif;
+        background-color:lightblue;
+    }
+
+    li.done {
+        text-decoration: line-through;
+    }
+
+</style>
+
+<!-- just like ng-controller='demo' -->
+<div id="demo">
+
+      <!-- get title from Vue object called 'demo'-->
+      <!-- demo.data is like $scope -->
+      <!-- demo.data.title is like $scope.title-->
+      <!-- 'uppercase' is a filter -->
+      <h1>{{title | uppercase}}</h1>
+
+      <ul>
+        <!-- v-repeat like ng-repeat='todo in todos' -->
+        <!-- v-on='click:' like ng-click... passed a block instead of a function -->
+        <!-- so 'done' here means data.todos[i].done -->
+        <!-- and 'content' here means data.todos[i].content -->
+        <!-- class = true if done, false (empty string) if not done -->
+          <li
+              v-repeat="todos"
+              v-on="click: done = !done"
+              class="{{done ? 'done' : ''}}"
+          >
+              {{content}}
+          </li>
+      </ul>
+</div>
+
+<!-- vue.js library -->
+<script type="text/javascript" src="../Downloads/vue.js"></script>
+
+
+<script type="text/javascript">
+var demo = new Vue({
+
+    // div class called 'demo'
+    el: '#demo',
+    data: {
+        title: 'todos',
+        todos: [
+            {
+                done: true,
+                content: 'Learn JavaScript'
+            },
+            {
+                done: false,
+                content: 'Learn vue.js'
+            }
+        ]
+    }
+})
+</script>
