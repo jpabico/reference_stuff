@@ -2,7 +2,7 @@
 
     body {
         font-family: Helvetica Neue, Arial, sans-serif;
-        background-color:lightblue;
+        background-color:antiquewhite;
     }
 
     li.done {
@@ -13,13 +13,11 @@
 
 <!-- just like ng-controller='demo' -->
 <div id="demo">
-
       <!-- get title from Vue object called 'demo'-->
       <!-- demo.data is like $scope -->
       <!-- demo.data.title is like $scope.title-->
       <!-- 'uppercase' is a filter -->
       <h1>{{title | uppercase}}</h1>
-
       <ul>
         <!-- v-repeat like ng-repeat='todo in todos' -->
         <!-- v-on='click:' like ng-click... passed a block instead of a function -->
@@ -28,7 +26,7 @@
         <!-- class = true if done, false (empty string) if not done -->
           <li
               v-repeat="todos"
-              v-on="click: done = !done"
+              v-on="click: compute, click: done = !done"
               class="{{done ? 'done' : ''}}"
           >
               {{content}}
@@ -43,20 +41,26 @@
 <script type="text/javascript">
 var demo = new Vue({
 
-    // div class called 'demo'
+    // div id called 'demo'
+    // demo.$el = actual div element with id 'demo'
+    // demo.$data = object
     el: '#demo',
     data: {
-        title: 'todos',
+        title: 'todos list',
         todos: [
             {
                 done: true,
-                content: 'Learn JavaScript'
+                content: 'Learn JavaScript',
+                compute: function() {alert('11')}
             },
             {
                 done: false,
-                content: 'Learn vue.js'
+                content: 'Learn vue.js',
+                compute: function() {alert('12')}
             }
         ]
     }
-})
+});
+
+document.write(JSON.stringify(demo.$data.todos[1]));
 </script>
