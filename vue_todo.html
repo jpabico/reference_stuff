@@ -25,11 +25,11 @@
         <!-- and 'content' here means data.todos[i].content -->
         <!-- class = true if done, false (empty string) if not done -->
           <li
-              v-repeat="todos"
-              v-on="click: compute, click: done = !done"
-              class="{{done ? 'done' : ''}}"
+              v-repeat="todo:todos"
+              v-on="click: todo.compute, click: todo.done = !todo.done"
+              class="{{todo.done ? 'done' : ''}}"
           >
-              {{content}}
+              {{todo.content}}
           </li>
       </ul>
 </div>
