@@ -59,3 +59,7 @@ var displayArgs2 = displayArgs.bind(emptyObject, 12, "a");
 // as the third and fourth parameters.
 displayArgs2("b", "c");
 // Output: 12 a b c
+
+// rewrite comments for bind() example 3
+// apply()
+// call()
